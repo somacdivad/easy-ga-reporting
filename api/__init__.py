@@ -29,7 +29,7 @@ class API:
 
         # Set up a Flow object to be used if we need to authenticate.
         flow = client.flow_from_clientsecrets(
-            secrets_json, scope=SCOPES, message=tools.message_if_missing(
+            secrets_json, scope=__scopes, message=tools.message_if_missing(
                 secrets_json)
         )
 
@@ -45,7 +45,7 @@ class API:
 
         # Build the service object.
         self._analytics = build(
-            "analytics", "v4", http=http, discoveryServiceUrl=DISCOVERY_URI
+            "analytics", "v4", http=http, discoveryServiceUrl=__discovery_uri
         )
 
     def get_report(
