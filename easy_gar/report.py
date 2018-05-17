@@ -13,6 +13,8 @@ class Report():
     def __init__(self, api_report, name=None):
         """Init Report object."""
 
+        pprint(api_report)
+
         def _fmt(ga_string):
             s = re.sub("(.)([A-Z][a-z]+)", r"\1 \2", ga_string)
             return re.sub("([a-z0-9])([A-Z])", r"\1 \2", s).lstrip("ga:").title()

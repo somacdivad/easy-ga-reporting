@@ -60,7 +60,7 @@ class API:
     ):
         """Return an API response object reporting metrics for set dates."""
         if not dimensions:
-            dimensions = api.dimensions.date()
+            dimensions = easy_gar.dimensions.date()
 
         response = self._analytics.reports().batchGet(
             body={

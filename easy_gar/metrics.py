@@ -1,78 +1,193 @@
 """Objects for dealing with Google Analaytics metrics sanely."""
 
-from collections import namedtuple
 
-
-class _Metric(namedtuple("Metric", ["name"])):
+class _Metric:
     """Class for dealing with Google Analytics metrics."""
 
-    __slots__ = ()
+    def __init__(self, expression=None, alias=None, formatting_type=None):
+        self.expression = name
+        self.alias = alias
+        self.formatting_type = formatting_type
 
-    def __repr__(self):
+    def __repr__(self, alias=None, formatting_type=None):
         """Repr string for class."""
-        return f"{self.__class__.__name__}({self.name})"
+        return f"{self.__class__.__name__}({self.expression}, {self.alias}, {self.formatting_type})"
 
     def __str__(self):
         """String representation of metric name."""
-        return f"{self.name}"
+        return f"{self.alias}"
 
     def __call__(self):
         """Return dictionary to be used in API requests."""
-        return {"expression": str(self)}
+        obj = {"expression": self.expression}
+        if self.alias:
+            obj["alias"] = self.alias
+        if self.formatting_type:
+            obj["formattingType"] = self.formatting_type
+        return obj
 
     def __add__(self, other):
         """Metric addition."""
-        return _Metric(f"({self})+{other}")
+        return _Metric(expression=f"({self})+{other}")
 
     def __sub__(self, other):
         """Metric subtraction."""
-        return _Metric(f"({self})-{other}")
+        return _Metric(expression=f"({self})-{other}")
 
     def __mul__(self, other):
         """Metric multiplication."""
-        return _Metric(f"({self})*{other}")
+        return _Metric(expression=f"({self})*{other}")
 
     def __truediv__(self, other):
         """Metric division."""
-        return _Metric(f"({self})/{other}")
+        return _Metric(expression=f"({self})/{other}", formatting_type="FLOAT")
 
 
 class _Metrics:
     """Google Analytics Metrics for use with the API class."""
 
     # Users
-    users = _Metric("ga:users")
-    new_users = _Metric("ga:newUsers")
-    users_1d = _Metric("ga:1dayUsers")
-    users_7d = _Metric("ga:7dayUsers")
-    users_14d = _Metric("ga:14dayUsers")
-    users_28d = _Metric("ga:28dayUsers")
-    users_30d = _Metric("ga:30dayUsers")
-    sessions_per_user = _Metric("ga:sessionsPerUser")
+    users = _Metric(
+        expression="ga:users",
+        alias="Users",
+        formatting_type="INTEGER"
+    )
+    new_users = _Metric(
+        expression="ga:newUsers",
+        alias="New Users",
+        formatting_type="INTEGER"
+    )
+    users_1d = _Metric(
+        expression="ga:1dayUsers",
+        alias="1 Day Active Users",
+        formatting_type="INTEGER"
+    )
+    users_7d = _Metric(
+        expression="ga:7dayUsers",
+        alias="7 Day Active Users",
+        formatting_type="INTEGER"
+    )
+    users_14d = _Metric(
+        expression="ga:14dayUsers",
+        alias="14 Day Active Users",
+        formatting_type="INTEGER",
+    )
+    users_28d = _Metric(
+        expression="ga:28dayUsers",
+        alias="28 Day Active Users",
+        formatting_type="INTEGER",
+    )
+    users_30d = _Metric(
+        expression="ga:30dayUsers",
+        alias="30 Day Active Users",
+        formatting_type="INTEGER",
+    )
+    sessions_per_user = _Metric(
+        expression="ga:sessionsPerUser",
+        alias="Sessions per User",
+        formatting_type="FLOAT",
+    )
+    percent_new_sessions = _Metric(
+        expression="ga:percentNewSessions",
+        alias="% New Sessions",
+        formatting_type="PERCENT",
+    )
 
     # Sessions
-    sessions = _Metric("ga:sessions")
-    bounces = _Metric("ga:bounces")
-    bounce_rate = _Metric("ga:bounceRate")
-    session_duration = _Metric("ga:sessionDuration")
-    avg_session_duration = _Metric("ga:avgSessionDuration")
-    unique_dimensions_combination = _Metric("ga:uniqueDimensionCombinations")
-    hits = _Metric("ga:hits")
+    sessions = _Metric(
+        name="ga:sessions",
+        alias="Sessions",
+        formatting_type="INTEGER"
+    )
+    bounces = _Metric(
+        name="ga:bounces",
+        alias="Bounces",
+        formatting_type="INTEGER"
+    )
+    bounce_rate = _Metric(
+        name="ga:bounceRate",
+        alias="Bounce Rate",
+        formatting_type="PERCENT"
+    )
+    session_duration = _Metric(
+        name="ga:sessionDuration",
+        alias="Session Duration",
+        formatting_type="TIME"
+    )
+    avg_session_duration = _Metric(
+        name="ga:avgSessionDuration",
+        alias="Avg. Session Duration",
+        formatting_type="TIME",
+    )
+    unique_dimensions_combination = _Metric(
+        name="ga:uniqueDimensionCombinations",
+        alias="Unique Dimension Combinations",
+        formatting_type="INTEGER",
+    )
+    hits = _Metric(
+        name="ga:hits",
+        alias="Hits",
+        formatting_type="INTEGER"
+    )
 
     # Traffic Sources
-    organic_searches = _Metric("ga:organicSearches")
+    organic_searches = _Metric(
+        name="ga:organicSearches",
+        alias="Organic Searches",
+        formatting_type="INTEGER"
+    )
 
     # Adwords
-    impressions = _Metric("ga:impressions")
-    ad_clicks = _Metric("ga:adClicks")
-    ad_cost = _Metric("ga:adCost")
-    cpm = _Metric("ga:CPM")
-    cpc = _Metric("ga:CPC")
-    ctr = _Metric("ga:CTR")
-    cost_per_transaction = _Metric("ga:costPerTransaction")
-    cost_per_conversion = _Metric("ga:costPerConversion")
-    rpc = _Metric("ga:RPC")
-    roas = _Metric("ga:ROAS")
+    impressions = _Metric(
+        name="ga:impressions",
+        alias="Impressions",
+        formatting_type="INTEGER"
+    )
+    ad_clicks = _Metric(
+        name="ga:adClicks",
+        alias="Clicks",
+        formatting_type="INTEGER"
+    )
+    ad_cost = _Metric(
+        name="ga:adCost",
+        alias="Cost",
+        formatting_type="CURRENCY"
+    )
+    cpm = _Metric(
+        name="ga:CPM",
+        alias="CPM",
+        formatting_type="CURRENCY"
+    )
+    cpc = _Metric(
+        name="ga:CPC",
+        alias="CPC",
+        formatting_type="CURRENCY"
+    )
+    ctr = _Metric(
+        name="ga:CTR",
+        alias="CTR",
+        formatting_type="PERCENT"
+    )
+    cost_per_transaction = _Metric(
+        name="ga:costPerTransaction",
+        alias="Cost per Transaction",
+        formatting_type="CURRENCY"
+    )
+    cost_per_conversion = _Metric(
+        name="ga:costPerConversion",
+        alias="Cost per Conversion",
+        formatting_type="CURRENCY"
+    )
+    rpc = _Metric(
+        name="ga:RPC",
+        alias="RPC",
+        formatting_type="CURRENCY"
+    )
+    roas = _Metric(
+        name="ga:ROAS",
+        alias="ROAS",
+        formatting_type="CURRENCY"
+    )
 
     # Goal Conversions (ALL)
     goal_stars_all = _Metric("ga:goalStartsAll")
