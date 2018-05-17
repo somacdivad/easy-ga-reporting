@@ -8,19 +8,17 @@ from oauth2client import client
 from oauth2client import file
 from oauth2client import tools
 
-import api
-from api.dimensions import dimensions
-from api.metrics import metrics
-from api.report import Report
-
-from pprint import pprint
+import easy_gar
+from easy_gar.dimensions import dimensions
+from easy_gar.metrics import metrics
+from easy_gar.report import Report
 
 __version__ = "1.0.0"
 __author__ = "David Amos"
 
 __all__ = ["API", "dimensions", "metrics", "Report"]
 
-_scopes = ["https://www.googleapis.com/auth/analytics.readonly"]
+_scopes = ("https://www.googleapis.com/auth/analytics.readonly",)
 _discovery_uri = ("https://analyticsreporting.googleapis.com/$discovery/rest")
 
 

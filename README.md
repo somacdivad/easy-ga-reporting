@@ -1,3 +1,8 @@
-# Easy Google Analytics Reporting API for Python
+# EasyGAR
 
-We're just now getting off our feet. Check back in a couple of weeks for more information!
+> Request a Google Analytics report. Get a Pandas `DataFrame`.
+
+Stop messing with Google's difficult-to-use Python client for the Google Analytics Reporting API.
+
+## Installation
+
