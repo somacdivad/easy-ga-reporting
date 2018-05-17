@@ -103,3 +103,8 @@ dev/
 
 # VS Code
 .vscode/
+
+# test stuff
+analyticsreporting.dat
+client_secrets.json
+test.py
