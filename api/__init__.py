@@ -11,7 +11,7 @@ from oauth2client import tools
 from api.dimensions import dimensions
 from api.metrics import metrics
 
-__all__ = ["API", "dimensions", "metrics"]
+__all__ = ["API", "dimensions", "metrics", "Report"]
 
 __scopes = ["https://www.googleapis.com/auth/analytics.readonly"]
 __discovery_uri = ("https://analyticsreporting.googleapis.com/$discovery/rest")
