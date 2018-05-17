@@ -8,20 +8,24 @@ from oauth2client import client
 from oauth2client import file
 from oauth2client import tools
 
+import api
 from api.dimensions import dimensions
 from api.metrics import metrics
+from api.report import Report
+
+from pprint import pprint
+
+__version__ = "1.0.0"
+__author__ = "David Amos"
 
 __all__ = ["API", "dimensions", "metrics", "Report"]
 
-__scopes = ["https://www.googleapis.com/auth/analytics.readonly"]
-__discovery_uri = ("https://analyticsreporting.googleapis.com/$discovery/rest")
+_scopes = ["https://www.googleapis.com/auth/analytics.readonly"]
+_discovery_uri = ("https://analyticsreporting.googleapis.com/$discovery/rest")
 
 
 class API:
     """API class."""
-
-    dimensions = Dimensions()
-    metrics = Metrics()
 
     def __init__(self, secrets_json, view_id):
         """Init API class."""
@@ -29,7 +33,7 @@ class API:
 
         # Set up a Flow object to be used if we need to authenticate.
         flow = client.flow_from_clientsecrets(
-            secrets_json, scope=__scopes, message=tools.message_if_missing(
+            secrets_json, scope=_scopes, message=tools.message_if_missing(
                 secrets_json)
         )
 
@@ -45,14 +49,22 @@ class API:
 
         # Build the service object.
         self._analytics = build(
-            "analytics", "v4", http=http, discoveryServiceUrl=__discovery_uri
+            "analytics", "v4", http=http, discoveryServiceUrl=_discovery_uri
         )
 
     def get_report(
-        self, start_date="7daysAgo", end_date="today", metrics=None, dimensions=None
+        self,
+        start_date="7daysAgo",
+        end_date="today",
+        metrics=None,
+        dimensions=None,
+        name=None,
     ):
         """Return an API response object reporting metrics for set dates."""
-        return self._analytics.reports().batchGet(
+        if not dimensions:
+            dimensions = api.dimensions.date()
+
+        response = self._analytics.reports().batchGet(
             body={
                 "reportRequests": [
                     {
@@ -64,3 +76,4 @@ class API:
                 ]
             }
         ).execute()
+        return Report(response["reports"][0], name=name)

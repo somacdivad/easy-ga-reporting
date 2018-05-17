@@ -1,5 +1,7 @@
 """Objects for dealing with Google Analaytics metrics sanely."""
 
+from collections import namedtuple
+
 
 class _Metric(namedtuple("Metric", ["name"])):
     """Class for dealing with Google Analytics metrics."""

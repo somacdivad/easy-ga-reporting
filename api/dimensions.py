@@ -1,5 +1,7 @@
 """Objects for dealing with Google Analytics dimensions sanely."""
 
+from collections import namedtuple
+
 
 class _Dimension(namedtuple("Dimension", ["name"])):
     """Class for dealing with Google Analaytics dimensions."""
