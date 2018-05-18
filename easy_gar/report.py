@@ -1,11 +1,6 @@
 """Report class for dealing with Google Analytics Reporting API responses sanely."""
 
-from collections import namedtuple
-import itertools
 import pandas as pd
-import re
-
-from pprint import pprint
 
 class Report():
     """Report class."""
