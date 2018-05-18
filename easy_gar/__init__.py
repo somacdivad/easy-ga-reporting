@@ -73,6 +73,7 @@ class API:
             request_body["pageToken"] = str(page_token)
 
         # attempt request using exponential backoff
+        error = None
         for n in range(0, 5):
             try:
                 response = self._analytics.reports().batchGet(
@@ -80,8 +81,9 @@ class API:
                 ).execute()
                 return response["reports"][0]
 
-            except HttpError as error:
-                if error.resp.reason in [
+            except HttpError as err:
+                error = err
+                if err.resp.reason in [
                     "userRateLimitExceeded",
                     "quotaExceeded",
                     "internalServerError",
@@ -90,6 +92,8 @@ class API:
                     time.sleep((2 ** n)) + random.random()
                 else:
                     break
+        
+        raise error
 
     def get_report(
         self,
