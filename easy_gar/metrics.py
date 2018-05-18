@@ -5,7 +5,7 @@ class _Metric:
     """Class for dealing with Google Analytics metrics."""
 
     def __init__(self, expression=None, alias=None, formatting_type=None):
-        self.expression = name
+        self.expression = expression
         self.alias = alias
         self.formatting_type = formatting_type
 
@@ -206,17 +206,17 @@ class _Metrics:
         formatting_type="CURRENCY"
     )
     goal_value_per_session = _Metric(
-        expression="ga:goalValuePerSession"
+        expression="ga:goalValuePerSession",
         alias="Per Session Goal Value",
         formatting_type="CURRENCY"
     )
     goal_conversion_rate_all = _Metric(
-        expression="ga:goalConversionRateAll"
+        expression="ga:goalConversionRateAll",
         alias="Goal Conversion Rate",
         formatting_type="PERCENT"
     )
     goal_abandons_all = _Metric(
-        expression="ga:goalAbandonsAll"
+        expression="ga:goalAbandonsAll",
         alias="Abandoned Funnels",
         formatting_type="INTEGER")
     goal_abandon_rate_all = _Metric(
@@ -875,7 +875,7 @@ class _Metrics:
     )
     exit_rate = _Metric(
         expression="ga:exitRate",
-        alias="% Exit"
+        alias="% Exit",
         formatting_type="PERCENT"
     )
 
