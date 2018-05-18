@@ -1,6 +1,4 @@
-"""Objects for dealing with Google Analaytics metrics sanely."""
-
-from collections import namedtuple
+"""Google Analytics metric objects."""
 
 
 class Metric:

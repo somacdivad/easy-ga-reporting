@@ -1,6 +1,4 @@
-"""Objects for dealing with Google Analytics dimensions sanely."""
-
-from collections import namedtuple
+"""Google Analytics dimensions objects."""
 
 
 class Dimension:

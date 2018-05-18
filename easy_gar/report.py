@@ -1,4 +1,4 @@
-"""Report class for dealing with Google Analytics Reporting API responses sanely."""
+"""Report class."""
 
 import pandas as pd
 
