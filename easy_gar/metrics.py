@@ -30,19 +30,30 @@ class Metric:
 
     def __add__(self, other):
         """Metric addition."""
-        return Metric(expression=f"({self})+{other}")
+        m = Metric(expression=f"({self.expression})+{other.expression}")
+        m.alias = f"{self} + {other}"
+        return m
 
     def __sub__(self, other):
         """Metric subtraction."""
-        return Metric(expression=f"({self})-{other}")
+        m = Metric(expression=f"({self.expression})-{other.expression}")
+        m.alias = f"{self} - {other}"
+        return m
 
     def __mul__(self, other):
         """Metric multiplication."""
-        return Metric(expression=f"({self})*{other}")
+        m = Metric(expression=f"({self.expression})*{other.expression}")
+        m.alias = f"{self} * {other}"
+        return m
 
     def __truediv__(self, other):
         """Metric division."""
-        return Metric(expression=f"({self})/{other}", formatting_type="FLOAT")
+        m = Metric(
+            expression=f"({self.expression})/{other.expression}",
+            formatting_type="FLOAT",
+        )
+        m.alias = f"{self} / {other}"
+        return m
 
 
 class Metrics:
