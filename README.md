@@ -14,7 +14,13 @@ Currently, the only way to install EasyGAR is with `setup.py`. Clone this reposi
 $ setup.py install
 ```
 
-# Basic Usage
+You can install the package requirements by running:
+
+```console
+$ pip install -r requirements.txt
+```
+
+## Basic Usage
 
 Here's a sample script illustrating basic usage fo EasyGAR:
 
