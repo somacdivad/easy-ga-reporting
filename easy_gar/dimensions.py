@@ -6,11 +6,11 @@ from collections import namedtuple
 class Dimension:
     """Class for dealing with Google Analaytics dimensions."""
 
-    def __init__(self, name, alias="", histogram_buckets=""):
+    def __init__(self, name, alias="", histogram_buckets=None):
         """Init Dimension object."""
         self.name = name
         self.alias = alias
-        self.histogram_buckets = histogram_buckets
+        self.histogram_buckets = [histogram_buckets] if histogram_buckets else []
 
     def __repr__(self):
         """Repr string for class."""
@@ -22,7 +22,7 @@ class Dimension:
 
     def __call__(self):
         """Return dictionary to be used in API requests."""
-        return {"name": str(self)}
+        return {"name": self.name, "histogramBuckets": self.histogram_buckets}
 
 
 class Dimensions:
