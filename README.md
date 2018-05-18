@@ -6,19 +6,17 @@ Do you often use Google Analytics Reporting API in Python? Do you analyze Google
 
 EasyGAR takes the pain out of using the Google API Python Client and automatically converts API responses to pandas `DataFrame` objects. It comes with support for several metrics and dimensions (including simple metric arithemtic!), and even handles pagination for you!
 
+> **NOTE:** EasyGAR is still under construction. It doesn't even have an alpha release yet! If you find a bug, please open an issue. If you would like to contribute, please see our [guidelines for contributing](https://github.com/somacdivad/easy-ga-reporting/blob/master/CONTRIBUTING.md).
+
 ## Installation
 
 Currently, the only way to install EasyGAR is with `setup.py`. Clone this repository and then run the following in the directory you cloned into:
 
 ```console
-$ setup.py install
+$ python setup.py install
 ```
 
-You can install the package requirements by running:
-
-```console
-$ pip install -r requirements.txt
-```
+> **IMPORTANT:** EasyGAR requires Python 3.6+.
 
 ## Basic Usage
 
@@ -101,6 +99,8 @@ Date     Continent
          Europe       2.0
 ```
 
+### Metric Arithmetic
+
 Metrics support basic arithmetic. For example, the following returns a metric calculating sessions per user:
 
 ```python
@@ -137,6 +137,8 @@ Date
 20180517                   1.739754
 20180518                   1.585774
 ```
+
+### Metric Aliases
 
 You can provide an alias to metrics to customize the fieldname in the `DataFrame` if needed:
 
