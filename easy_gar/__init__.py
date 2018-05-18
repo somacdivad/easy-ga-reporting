@@ -1,7 +1,5 @@
 """EasyGAR module."""
 
-import itertools
-import time
 from easy_gar.api import API
 from easy_gar.dimensions import dimensions
 from easy_gar.metrics import metrics
