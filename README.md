@@ -10,7 +10,7 @@ EasyGAR takes the pain out of using the Google API Python Client and automatical
 
 ## Installation
 
-Currently, the only way to install EasyGAR is with `setup.py`. Clone this repository and then run the following in the directory you cloned into:
+Currently, the only way to install EasyGAR is with `setup.py`.
 
 ```console
 $ python setup.py install
