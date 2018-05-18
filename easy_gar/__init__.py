@@ -64,10 +64,10 @@ class API:
             "dateRanges": [{"startDate": start_date, "endDate": end_date}],
             "metrics": metrics,
             "dimensions": dimensions,
+            "pageSize": str(page_size) if page_size else "10000"
         }
         if page_token:
             request_body["pageToken"] = str(page_token)
-            request_body["pageSize"] = str(page_size) if page_size else "10000"
 
         return self._analytics.reports().batchGet(
             body={"reportRequests": [request_body]}
@@ -89,6 +89,7 @@ class API:
         _metrics = [metric() for metric in metrics]
         _dimensions = [dimension() for dimension in dimensions]
 
+        # Get initial data
         response = self._batch_get(start_date, end_date, _metrics, _dimensions)
         report = response["reports"][0]
         rows = (tuple(row["metrics"][0]["values"]) for row in report["data"]["rows"])
@@ -109,9 +110,9 @@ class API:
                 indices, (tuple(row["dimensions"]) for row in report["data"]["rows"])
             )
 
+        # Set up report data (for pandas DataFrame)
         fieldnames = (metric.alias for metric in metrics)
         data = zip(fieldnames, zip(*rows))
-
         index = pd.MultiIndex.from_tuples(
             tuple(indices), names=tuple(dimension.alias for dimension in dimensions)
         )
