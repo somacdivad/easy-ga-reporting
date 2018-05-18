@@ -95,250 +95,737 @@ class _Metrics:
 
     # Sessions
     sessions = _Metric(
-        name="ga:sessions",
+        expression="ga:sessions",
         alias="Sessions",
         formatting_type="INTEGER"
     )
     bounces = _Metric(
-        name="ga:bounces",
+        expression="ga:bounces",
         alias="Bounces",
         formatting_type="INTEGER"
     )
     bounce_rate = _Metric(
-        name="ga:bounceRate",
+        expression="ga:bounceRate",
         alias="Bounce Rate",
         formatting_type="PERCENT"
     )
     session_duration = _Metric(
-        name="ga:sessionDuration",
+        expression="ga:sessionDuration",
         alias="Session Duration",
         formatting_type="TIME"
     )
     avg_session_duration = _Metric(
-        name="ga:avgSessionDuration",
+        expression="ga:avgSessionDuration",
         alias="Avg. Session Duration",
         formatting_type="TIME",
     )
     unique_dimensions_combination = _Metric(
-        name="ga:uniqueDimensionCombinations",
+        expression="ga:uniqueDimensionCombinations",
         alias="Unique Dimension Combinations",
         formatting_type="INTEGER",
     )
     hits = _Metric(
-        name="ga:hits",
+        expression="ga:hits",
         alias="Hits",
         formatting_type="INTEGER"
     )
 
     # Traffic Sources
     organic_searches = _Metric(
-        name="ga:organicSearches",
+        expression="ga:organicSearches",
         alias="Organic Searches",
         formatting_type="INTEGER"
     )
 
     # Adwords
     impressions = _Metric(
-        name="ga:impressions",
+        expression="ga:impressions",
         alias="Impressions",
         formatting_type="INTEGER"
     )
     ad_clicks = _Metric(
-        name="ga:adClicks",
+        expression="ga:adClicks",
         alias="Clicks",
         formatting_type="INTEGER"
     )
     ad_cost = _Metric(
-        name="ga:adCost",
+        expression="ga:adCost",
         alias="Cost",
         formatting_type="CURRENCY"
     )
     cpm = _Metric(
-        name="ga:CPM",
+        expression="ga:CPM",
         alias="CPM",
         formatting_type="CURRENCY"
     )
     cpc = _Metric(
-        name="ga:CPC",
+        expression="ga:CPC",
         alias="CPC",
         formatting_type="CURRENCY"
     )
     ctr = _Metric(
-        name="ga:CTR",
+        expression="ga:CTR",
         alias="CTR",
         formatting_type="PERCENT"
     )
     cost_per_transaction = _Metric(
-        name="ga:costPerTransaction",
+        expression="ga:costPerTransaction",
         alias="Cost per Transaction",
         formatting_type="CURRENCY"
     )
     cost_per_conversion = _Metric(
-        name="ga:costPerConversion",
+        expression="ga:costPerConversion",
         alias="Cost per Conversion",
         formatting_type="CURRENCY"
     )
     rpc = _Metric(
-        name="ga:RPC",
+        expression="ga:RPC",
         alias="RPC",
         formatting_type="CURRENCY"
     )
     roas = _Metric(
-        name="ga:ROAS",
+        expression="ga:ROAS",
         alias="ROAS",
         formatting_type="CURRENCY"
     )
 
     # Goal Conversions (ALL)
-    goal_stars_all = _Metric("ga:goalStartsAll")
-    goal_completions_all = _Metric("ga:goalCompletionsAll")
-    goal_value_all = _Metric("ga:goalValueAll")
-    goal_value_per_session = _Metric("ga:goalValuePerSession")
-    goal_conversion_rate_all = _Metric("ga:goalConversionRateAll")
-    goal_abandons_all = _Metric("ga:goalAbandonsAll")
-    goal_abandon_rate_all = _Metric("ga:goalAbandonRateAll")
+    goal_stars_all = _Metric(
+        expression="ga:goalStartsAll",
+        alias="Goal Starts",
+        formatting_type="INTEGER"
+    )
+    goal_completions_all = _Metric(
+        expression="ga:goalCompletionsAll",
+        alias="Goal Completions",
+        formatting_type="INTEGER"
+    )
+    goal_value_all = _Metric(
+        expression="ga:goalValueAll",
+        alias="Goal Value",
+        formatting_type="CURRENCY"
+    )
+    goal_value_per_session = _Metric(
+        expression="ga:goalValuePerSession"
+        alias="Per Session Goal Value",
+        formatting_type="CURRENCY"
+    )
+    goal_conversion_rate_all = _Metric(
+        expression="ga:goalConversionRateAll"
+        alias="Goal Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal_abandons_all = _Metric(
+        expression="ga:goalAbandonsAll"
+        alias="Abandoned Funnels",
+        formatting_type="INTEGER")
+    goal_abandon_rate_all = _Metric(
+        expression="ga:goalAbandonRateAll",
+        alias="Total Abondonment Rate",
+        formatting_type="PERCENT"
+    )
 
     # Goal Conversions (Itemized)
     # Goal 01
-    goal01_starts = _Metric("ga:goal01Starts")
-    goal01_completions = _Metric("ga:goal01Completions")
-    goal01_value = _Metric("ga:goal01Value")
-    goal01_conversion_rate = _Metric("ga:goal01ConversionRate")
-    goal01_abandons = _Metric("ga:goal01Abandons")
-    goal01_abandon_rate = _Metric("ga:goal01AbandonRate")
+    goal01_starts = _Metric(
+        expression="ga:goal01Starts",
+        alias="Goal 01 Starts",
+        formatting_type="INTEGER"
+    )
+    goal01_completions = _Metric(
+        expression="ga:goal01Completions",
+        alias="Goal 01 Completions",
+        formatting_type="INTEGER")
+    goal01_value = _Metric(
+        expression="ga:goal01Value",
+        alias="Goal 01 Value",
+        formatting_type="CURRENCY"
+    )
+    goal01_conversion_rate = _Metric(
+        expression="ga:goal01ConversionRate",
+        alias="Goal 01 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal01_abandons = _Metric(
+        expression="ga:goal01Abandons",
+        alias="Goal 01 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal01_abandon_rate = _Metric(
+        expression="ga:goal01AbandonRate",
+        alias="Goal 01 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 02
-    goal02_starts = _Metric("ga:goal02Starts")
-    goal02_completions = _Metric("ga:goal02Completions")
-    goal02_value = _Metric("ga:goal02Value")
-    goal02_conversion_rate = _Metric("ga:goal02ConversionRate")
-    goal02_abandons = _Metric("ga:goal02Abandons")
-    goal02_abandon_rate = _Metric("ga:goal02AbandonRate")
+    goal02_starts = _Metric(
+        expression="ga:goal02Starts",
+        alias="Goal 02 Starts",
+        formatting_type="INTEGER"
+    )
+    goal02_completions = _Metric(
+        expression="ga:goal02Completions",
+        alias="Goal 02 Completions",
+        formatting_type="INTEGER")
+    goal02_value = _Metric(
+        expression="ga:goal02Value",
+        alias="Goal 02 Value",
+        formatting_type="CURRENCY"
+    )
+    goal02_conversion_rate = _Metric(
+        expression="ga:goal02ConversionRate",
+        alias="Goal 02 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal02_abandons = _Metric(
+        expression="ga:goal02Abandons",
+        alias="Goal 02 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal02_abandon_rate = _Metric(
+        expression="ga:goal02AbandonRate",
+        alias="Goal 02 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 03
-    goal03_starts = _Metric("ga:goal03Starts")
-    goal03_completions = _Metric("ga:goal03Completions")
-    goal03_value = _Metric("ga:goal03Value")
-    goal03_conversion_rate = _Metric("ga:goal03ConversionRate")
-    goal03_abandons = _Metric("ga:goal03Abandons")
-    goal03_abandon_rate = _Metric("ga:goal03AbandonRate")
+    goal03_starts = _Metric(
+        expression="ga:goal03Starts",
+        alias="Goal 03 Starts",
+        formatting_type="INTEGER"
+    )
+    goal03_completions = _Metric(
+        expression="ga:goal03Completions",
+        alias="Goal 03 Completions",
+        formatting_type="INTEGER")
+    goal03_value = _Metric(
+        expression="ga:goal03Value",
+        alias="Goal 03 Value",
+        formatting_type="CURRENCY"
+    )
+    goal03_conversion_rate = _Metric(
+        expression="ga:goal03ConversionRate",
+        alias="Goal 03 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal03_abandons = _Metric(
+        expression="ga:goal03Abandons",
+        alias="Goal 03 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal03_abandon_rate = _Metric(
+        expression="ga:goal03AbandonRate",
+        alias="Goal 03 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 04
-    goal04_starts = _Metric("ga:goal04Starts")
-    goal04_completions = _Metric("ga:goal04Completions")
-    goal04_value = _Metric("ga:goal04Value")
-    goal04_conversion_rate = _Metric("ga:goal04ConversionRate")
-    goal04_abandons = _Metric("ga:goal04Abandons")
-    goal04_abandon_rate = _Metric("ga:goal04AbandonRate")
+    goal04_starts = _Metric(
+        expression="ga:goal04Starts",
+        alias="Goal 04 Starts",
+        formatting_type="INTEGER"
+    )
+    goal04_completions = _Metric(
+        expression="ga:goal04Completions",
+        alias="Goal 04 Completions",
+        formatting_type="INTEGER")
+    goal04_value = _Metric(
+        expression="ga:goal04Value",
+        alias="Goal 04 Value",
+        formatting_type="CURRENCY"
+    )
+    goal04_conversion_rate = _Metric(
+        expression="ga:goal04ConversionRate",
+        alias="Goal 04 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal04_abandons = _Metric(
+        expression="ga:goal04Abandons",
+        alias="Goal 04 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal04_abandon_rate = _Metric(
+        expression="ga:goal04AbandonRate",
+        alias="Goal 04 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 05
-    goal05_starts = _Metric("ga:goal05Starts")
-    goal05_completions = _Metric("ga:goal05Completions")
-    goal05_value = _Metric("ga:goal05Value")
-    goal05_conversion_rate = _Metric("ga:goal05ConversionRate")
-    goal05_abandons = _Metric("ga:goal05Abandons")
-    goal05_abandon_rate = _Metric("ga:goal05AbandonRate")
+    goal05_starts = _Metric(
+        expression="ga:goal05Starts",
+        alias="Goal 05 Starts",
+        formatting_type="INTEGER"
+    )
+    goal05_completions = _Metric(
+        expression="ga:goal05Completions",
+        alias="Goal 05 Completions",
+        formatting_type="INTEGER")
+    goal05_value = _Metric(
+        expression="ga:goal05Value",
+        alias="Goal 05 Value",
+        formatting_type="CURRENCY"
+    )
+    goal05_conversion_rate = _Metric(
+        expression="ga:goal05ConversionRate",
+        alias="Goal 05 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal05_abandons = _Metric(
+        expression="ga:goal05Abandons",
+        alias="Goal 05 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal05_abandon_rate = _Metric(
+        expression="ga:goal05AbandonRate",
+        alias="Goal 05 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 06
-    goal06_starts = _Metric("ga:goal06Starts")
-    goal06_completions = _Metric("ga:goal06Completions")
-    goal06_value = _Metric("ga:goal06Value")
-    goal06_conversion_rate = _Metric("ga:goal06ConversionRate")
-    goal06_abandons = _Metric("ga:goal06Abandons")
-    goal06_abandon_rate = _Metric("ga:goal06AbandonRate")
+    goal06_starts = _Metric(
+        expression="ga:goal06Starts",
+        alias="Goal 06 Starts",
+        formatting_type="INTEGER"
+    )
+    goal06_completions = _Metric(
+        expression="ga:goal06Completions",
+        alias="Goal 06 Completions",
+        formatting_type="INTEGER")
+    goal06_value = _Metric(
+        expression="ga:goal06Value",
+        alias="Goal 06 Value",
+        formatting_type="CURRENCY"
+    )
+    goal06_conversion_rate = _Metric(
+        expression="ga:goal06ConversionRate",
+        alias="Goal 06 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal06_abandons = _Metric(
+        expression="ga:goal06Abandons",
+        alias="Goal 06 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal06_abandon_rate = _Metric(
+        expression="ga:goal06AbandonRate",
+        alias="Goal 06 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 07
-    goal07_starts = _Metric("ga:goal07Starts")
-    goal07_completions = _Metric("ga:goal07Completions")
-    goal07_value = _Metric("ga:goal07Value")
-    goal07_conversion_rate = _Metric("ga:goal07ConversionRate")
-    goal07_abandons = _Metric("ga:goal07Abandons")
-    goal07_abandon_rate = _Metric("ga:goal07AbandonRate")
+    goal07_starts = _Metric(
+        expression="ga:goal07Starts",
+        alias="Goal 07 Starts",
+        formatting_type="INTEGER"
+    )
+    goal07_completions = _Metric(
+        expression="ga:goal07Completions",
+        alias="Goal 07 Completions",
+        formatting_type="INTEGER")
+    goal07_value = _Metric(
+        expression="ga:goal07Value",
+        alias="Goal 07 Value",
+        formatting_type="CURRENCY"
+    )
+    goal07_conversion_rate = _Metric(
+        expression="ga:goal07ConversionRate",
+        alias="Goal 07 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal07_abandons = _Metric(
+        expression="ga:goal07Abandons",
+        alias="Goal 07 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal07_abandon_rate = _Metric(
+        expression="ga:goal07AbandonRate",
+        alias="Goal 07 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 08
-    goal08_starts = _Metric("ga:goal08Starts")
-    goal08_completions = _Metric("ga:goal08Completions")
-    goal08_value = _Metric("ga:goal08Value")
-    goal08_conversion_rate = _Metric("ga:goal08ConversionRate")
-    goal08_abandons = _Metric("ga:goal08Abandons")
-    goal08_abandon_rate = _Metric("ga:goal08AbandonRate")
+    goal08_starts = _Metric(
+        expression="ga:goal08Starts",
+        alias="Goal 08 Starts",
+        formatting_type="INTEGER"
+    )
+    goal08_completions = _Metric(
+        expression="ga:goal08Completions",
+        alias="Goal 08 Completions",
+        formatting_type="INTEGER")
+    goal08_value = _Metric(
+        expression="ga:goal08Value",
+        alias="Goal 08 Value",
+        formatting_type="CURRENCY"
+    )
+    goal08_conversion_rate = _Metric(
+        expression="ga:goal08ConversionRate",
+        alias="Goal 08 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal08_abandons = _Metric(
+        expression="ga:goal08Abandons",
+        alias="Goal 08 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal08_abandon_rate = _Metric(
+        expression="ga:goal08AbandonRate",
+        alias="Goal 08 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 09
-    goal09_starts = _Metric("ga:goal09Starts")
-    goal09_completions = _Metric("ga:goal09Completions")
-    goal09_value = _Metric("ga:goal09Value")
-    goal09_conversion_rate = _Metric("ga:goal09ConversionRate")
-    goal09_abandons = _Metric("ga:goal09Abandons")
-    goal09_abandon_rate = _Metric("ga:goal09AbandonRate")
+    goal09_starts = _Metric(
+        expression="ga:goal09Starts",
+        alias="Goal 09 Starts",
+        formatting_type="INTEGER"
+    )
+    goal09_completions = _Metric(
+        expression="ga:goal09Completions",
+        alias="Goal 09 Completions",
+        formatting_type="INTEGER")
+    goal09_value = _Metric(
+        expression="ga:goal09Value",
+        alias="Goal 09 Value",
+        formatting_type="CURRENCY"
+    )
+    goal09_conversion_rate = _Metric(
+        expression="ga:goal09ConversionRate",
+        alias="Goal 09 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal09_abandons = _Metric(
+        expression="ga:goal09Abandons",
+        alias="Goal 09 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal09_abandon_rate = _Metric(
+        expression="ga:goal09AbandonRate",
+        alias="Goal 09 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 10
-    goal10_starts = _Metric("ga:goal10Starts")
-    goal10_completions = _Metric("ga:goal10Completions")
-    goal10_value = _Metric("ga:goal10Value")
-    goal10_conversion_rate = _Metric("ga:goal10ConversionRate")
-    goal10_abandons = _Metric("ga:goal10Abandons")
-    goal10_abandon_rate = _Metric("ga:goal10AbandonRate")
+    goal10_starts = _Metric(
+        expression="ga:goal10Starts",
+        alias="Goal 10 Starts",
+        formatting_type="INTEGER"
+    )
+    goal10_completions = _Metric(
+        expression="ga:goal10Completions",
+        alias="Goal 10 Completions",
+        formatting_type="INTEGER")
+    goal10_value = _Metric(
+        expression="ga:goal10Value",
+        alias="Goal 10 Value",
+        formatting_type="CURRENCY"
+    )
+    goal10_conversion_rate = _Metric(
+        expression="ga:goal10ConversionRate",
+        alias="Goal 10 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal10_abandons = _Metric(
+        expression="ga:goal10Abandons",
+        alias="Goal 10 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal10_abandon_rate = _Metric(
+        expression="ga:goal10AbandonRate",
+        alias="Goal 10 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 11
-    goal11_starts = _Metric("ga:goal11Starts")
-    goal11_completions = _Metric("ga:goal11Completions")
-    goal11_value = _Metric("ga:goal11Value")
-    goal11_conversion_rate = _Metric("ga:goal11ConversionRate")
-    goal11_abandons = _Metric("ga:goal11Abandons")
-    goal11_abandon_rate = _Metric("ga:goal11AbandonRate")
+    goal11_starts = _Metric(
+        expression="ga:goal11Starts",
+        alias="Goal 11 Starts",
+        formatting_type="INTEGER"
+    )
+    goal11_completions = _Metric(
+        expression="ga:goal11Completions",
+        alias="Goal 11 Completions",
+        formatting_type="INTEGER")
+    goal11_value = _Metric(
+        expression="ga:goal11Value",
+        alias="Goal 11 Value",
+        formatting_type="CURRENCY"
+    )
+    goal11_conversion_rate = _Metric(
+        expression="ga:goal11ConversionRate",
+        alias="Goal 11 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal11_abandons = _Metric(
+        expression="ga:goal11Abandons",
+        alias="Goal 11 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal11_abandon_rate = _Metric(
+        expression="ga:goal11AbandonRate",
+        alias="Goal 11 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 12
-    goal12_starts = _Metric("ga:goal12Starts")
-    goal12_completions = _Metric("ga:goal12Completions")
-    goal12_value = _Metric("ga:goal12Value")
-    goal12_conversion_rate = _Metric("ga:goal12ConversionRate")
-    goal12_abandons = _Metric("ga:goal12Abandons")
-    goal12_abandon_rate = _Metric("ga:goal12AbandonRate")
+    goal12_starts = _Metric(
+        expression="ga:goal12Starts",
+        alias="Goal 12 Starts",
+        formatting_type="INTEGER"
+    )
+    goal12_completions = _Metric(
+        expression="ga:goal12Completions",
+        alias="Goal 12 Completions",
+        formatting_type="INTEGER")
+    goal12_value = _Metric(
+        expression="ga:goal12Value",
+        alias="Goal 12 Value",
+        formatting_type="CURRENCY"
+    )
+    goal12_conversion_rate = _Metric(
+        expression="ga:goal12ConversionRate",
+        alias="Goal 12 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal12_abandons = _Metric(
+        expression="ga:goal12Abandons",
+        alias="Goal 12 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal12_abandon_rate = _Metric(
+        expression="ga:goal12AbandonRate",
+        alias="Goal 12 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 13
-    goal13_starts = _Metric("ga:goal13Starts")
-    goal13_completions = _Metric("ga:goal13Completions")
-    goal13_value = _Metric("ga:goal13Value")
-    goal13_conversion_rate = _Metric("ga:goal13ConversionRate")
-    goal13_abandons = _Metric("ga:goal13Abandons")
-    goal13_abandon_rate = _Metric("ga:goal13AbandonRate")
+    goal13_starts = _Metric(
+        expression="ga:goal13Starts",
+        alias="Goal 13 Starts",
+        formatting_type="INTEGER"
+    )
+    goal13_completions = _Metric(
+        expression="ga:goal13Completions",
+        alias="Goal 13 Completions",
+        formatting_type="INTEGER")
+    goal13_value = _Metric(
+        expression="ga:goal13Value",
+        alias="Goal 13 Value",
+        formatting_type="CURRENCY"
+    )
+    goal13_conversion_rate = _Metric(
+        expression="ga:goal13ConversionRate",
+        alias="Goal 13 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal13_abandons = _Metric(
+        expression="ga:goal13Abandons",
+        alias="Goal 13 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal13_abandon_rate = _Metric(
+        expression="ga:goal13AbandonRate",
+        alias="Goal 13 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 14
-    goal14_starts = _Metric("ga:goal14Starts")
-    goal14_completions = _Metric("ga:goal14Completions")
-    goal14_value = _Metric("ga:goal14Value")
-    goal14_conversion_rate = _Metric("ga:goal14ConversionRate")
-    goal14_abandons = _Metric("ga:goal14Abandons")
-    goal14_abandon_rate = _Metric("ga:goal14AbandonRate")
+    goal14_starts = _Metric(
+        expression="ga:goal14Starts",
+        alias="Goal 14 Starts",
+        formatting_type="INTEGER"
+    )
+    goal14_completions = _Metric(
+        expression="ga:goal14Completions",
+        alias="Goal 14 Completions",
+        formatting_type="INTEGER")
+    goal14_value = _Metric(
+        expression="ga:goal14Value",
+        alias="Goal 14 Value",
+        formatting_type="CURRENCY"
+    )
+    goal14_conversion_rate = _Metric(
+        expression="ga:goal14ConversionRate",
+        alias="Goal 14 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal14_abandons = _Metric(
+        expression="ga:goal14Abandons",
+        alias="Goal 14 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal14_abandon_rate = _Metric(
+        expression="ga:goal14AbandonRate",
+        alias="Goal 14 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 15
-    goal15_starts = _Metric("ga:goal15Starts")
-    goal15_completions = _Metric("ga:goal15Completions")
-    goal15_value = _Metric("ga:goal15Value")
-    goal15_conversion_rate = _Metric("ga:goal15ConversionRate")
-    goal15_abandons = _Metric("ga:goal15Abandons")
-    goal15_abandon_rate = _Metric("ga:goal15AbandonRate")
+    goal15_starts = _Metric(
+        expression="ga:goal15Starts",
+        alias="Goal 15 Starts",
+        formatting_type="INTEGER"
+    )
+    goal15_completions = _Metric(
+        expression="ga:goal15Completions",
+        alias="Goal 15 Completions",
+        formatting_type="INTEGER")
+    goal15_value = _Metric(
+        expression="ga:goal15Value",
+        alias="Goal 15 Value",
+        formatting_type="CURRENCY"
+    )
+    goal15_conversion_rate = _Metric(
+        expression="ga:goal15ConversionRate",
+        alias="Goal 15 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal15_abandons = _Metric(
+        expression="ga:goal15Abandons",
+        alias="Goal 15 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal15_abandon_rate = _Metric(
+        expression="ga:goal15AbandonRate",
+        alias="Goal 15 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 16
-    goal16_starts = _Metric("ga:goal16Starts")
-    goal16_completions = _Metric("ga:goal16Completions")
-    goal16_value = _Metric("ga:goal16Value")
-    goal16_conversion_rate = _Metric("ga:goal16ConversionRate")
-    goal16_abandons = _Metric("ga:goal16Abandons")
-    goal16_abandon_rate = _Metric("ga:goal16AbandonRate")
+    goal16_starts = _Metric(
+        expression="ga:goal16Starts",
+        alias="Goal 16 Starts",
+        formatting_type="INTEGER"
+    )
+    goal16_completions = _Metric(
+        expression="ga:goal16Completions",
+        alias="Goal 16 Completions",
+        formatting_type="INTEGER")
+    goal16_value = _Metric(
+        expression="ga:goal16Value",
+        alias="Goal 16 Value",
+        formatting_type="CURRENCY"
+    )
+    goal16_conversion_rate = _Metric(
+        expression="ga:goal16ConversionRate",
+        alias="Goal 16 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal16_abandons = _Metric(
+        expression="ga:goal16Abandons",
+        alias="Goal 16 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal16_abandon_rate = _Metric(
+        expression="ga:goal16AbandonRate",
+        alias="Goal 16 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 17
-    goal17_starts = _Metric("ga:goal17Starts")
-    goal17_completions = _Metric("ga:goal17Completions")
-    goal17_value = _Metric("ga:goal17Value")
-    goal17_conversion_rate = _Metric("ga:goal17ConversionRate")
-    goal17_abandons = _Metric("ga:goal17Abandons")
-    goal17_abandon_rate = _Metric("ga:goal17AbandonRate")
+    goal17_starts = _Metric(
+        expression="ga:goal17Starts",
+        alias="Goal 17 Starts",
+        formatting_type="INTEGER"
+    )
+    goal17_completions = _Metric(
+        expression="ga:goal17Completions",
+        alias="Goal 17 Completions",
+        formatting_type="INTEGER")
+    goal17_value = _Metric(
+        expression="ga:goal17Value",
+        alias="Goal 17 Value",
+        formatting_type="CURRENCY"
+    )
+    goal17_conversion_rate = _Metric(
+        expression="ga:goal17ConversionRate",
+        alias="Goal 17 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal17_abandons = _Metric(
+        expression="ga:goal17Abandons",
+        alias="Goal 17 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal17_abandon_rate = _Metric(
+        expression="ga:goal17AbandonRate",
+        alias="Goal 17 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 18
-    goal18_starts = _Metric("ga:goal18Starts")
-    goal18_completions = _Metric("ga:goal18Completions")
-    goal18_value = _Metric("ga:goal18Value")
-    goal18_conversion_rate = _Metric("ga:goal18ConversionRate")
-    goal18_abandons = _Metric("ga:goal18Abandons")
-    goal18_abandon_rate = _Metric("ga:goal18AbandonRate")
+    goal18_starts = _Metric(
+        expression="ga:goal18Starts",
+        alias="Goal 18 Starts",
+        formatting_type="INTEGER"
+    )
+    goal18_completions = _Metric(
+        expression="ga:goal18Completions",
+        alias="Goal 18 Completions",
+        formatting_type="INTEGER")
+    goal18_value = _Metric(
+        expression="ga:goal18Value",
+        alias="Goal 18 Value",
+        formatting_type="CURRENCY"
+    )
+    goal18_conversion_rate = _Metric(
+        expression="ga:goal18ConversionRate",
+        alias="Goal 18 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal18_abandons = _Metric(
+        expression="ga:goal18Abandons",
+        alias="Goal 18 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal18_abandon_rate = _Metric(
+        expression="ga:goal18AbandonRate",
+        alias="Goal 18 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 19
-    goal19_starts = _Metric("ga:goal19Starts")
-    goal19_completions = _Metric("ga:goal19Completions")
-    goal19_value = _Metric("ga:goal19Value")
-    goal19_conversion_rate = _Metric("ga:goal19ConversionRate")
-    goal19_abandons = _Metric("ga:goal19Abandons")
-    goal19_abandon_rate = _Metric("ga:goal19AbandonRate")
+    goal19_starts = _Metric(
+        expression="ga:goal19Starts",
+        alias="Goal 19 Starts",
+        formatting_type="INTEGER"
+    )
+    goal19_completions = _Metric(
+        expression="ga:goal19Completions",
+        alias="Goal 19 Completions",
+        formatting_type="INTEGER")
+    goal19_value = _Metric(
+        expression="ga:goal19Value",
+        alias="Goal 19 Value",
+        formatting_type="CURRENCY"
+    )
+    goal19_conversion_rate = _Metric(
+        expression="ga:goal19ConversionRate",
+        alias="Goal 19 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal19_abandons = _Metric(
+        expression="ga:goal19Abandons",
+        alias="Goal 19 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal19_abandon_rate = _Metric(
+        expression="ga:goal19AbandonRate",
+        alias="Goal 19 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
     # Goal 20
-    goal20_starts = _Metric("ga:goal20Starts")
-    goal20_completions = _Metric("ga:goal20Completions")
-    goal20_value = _Metric("ga:goal20Value")
-    goal20_conversion_rate = _Metric("ga:goal20ConversionRate")
-    goal20_abandons = _Metric("ga:goal20Abandons")
-    goal20_abandon_rate = _Metric("ga:goal20AbandonRate")
+    goal20_starts = _Metric(
+        expression="ga:goal20Starts",
+        alias="Goal 20 Starts",
+        formatting_type="INTEGER"
+    )
+    goal20_completions = _Metric(
+        expression="ga:goal20Completions",
+        alias="Goal 20 Completions",
+        formatting_type="INTEGER")
+    goal20_value = _Metric(
+        expression="ga:goal20Value",
+        alias="Goal 20 Value",
+        formatting_type="CURRENCY"
+    )
+    goal20_conversion_rate = _Metric(
+        expression="ga:goal20ConversionRate",
+        alias="Goal 20 Conversion Rate",
+        formatting_type="PERCENT"
+    )
+    goal20_abandons = _Metric(
+        expression="ga:goal20Abandons",
+        alias="Goal 20 Abandoned Funnels",
+        formatting_type="INTEGER"
+    )
+    goal20_abandon_rate = _Metric(
+        expression="ga:goal20AbandonRate",
+        alias="Goal 20 Abandonment Rate",
+        formatting_type="PERCENT"
+    )
 
     # Page Tracking
     page_value = _Metric("ga:pageValue")
