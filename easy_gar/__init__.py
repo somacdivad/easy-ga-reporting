@@ -1,8 +1,11 @@
 """Google Analytics API object."""
 
 import itertools
+import time
+import random
 
 from apiclient.discovery import build
+from apiclient.errors import HttpError
 import httplib2
 from oauth2client import client
 from oauth2client import file
@@ -64,14 +67,29 @@ class API:
             "dateRanges": [{"startDate": start_date, "endDate": end_date}],
             "metrics": metrics,
             "dimensions": dimensions,
-            "pageSize": str(page_size) if page_size else "10000"
+            "pageSize": str(page_size) if page_size else "10000",
         }
         if page_token:
             request_body["pageToken"] = str(page_token)
 
-        return self._analytics.reports().batchGet(
-            body={"reportRequests": [request_body]}
-        ).execute()
+        # attempt request using exponential backoff
+        for n in range(0, 5):
+            try:
+                response = self._analytics.reports().batchGet(
+                    body={"reportRequests": [request_body]}
+                ).execute()
+                return response["reports"][0]
+
+            except HttpError as error:
+                if error.resp.reason in [
+                    "userRateLimitExceeded",
+                    "quotaExceeded",
+                    "internalServerError",
+                    "backendError",
+                ]:
+                    time.sleep((2 ** n)) + random.random()
+                else:
+                    break
 
     def get_report(
         self,
@@ -91,30 +109,37 @@ class API:
 
         # Get initial data
         response = self._batch_get(start_date, end_date, _metrics, _dimensions)
-        report = response["reports"][0]
-        rows = (tuple(row["metrics"][0]["values"]) for row in report["data"]["rows"])
-        indices = (tuple(row["dimensions"]) for row in report["data"]["rows"])
 
-        # Retrieve additional data if response is paginated
-        while "nextPageToken" in report.keys():
-            page_token = report["nextPageToken"]
-            response = self._batch_get(
-                start_date, end_date, _metrics, _dimensions, page_token
+        if response:
+            rows = (
+                tuple(row["metrics"][0]["values"]) for row in response["data"]["rows"]
             )
-            report = response["reports"][0]
-            rows = itertools.chain(
-                rows,
-                (tuple(row["metrics"][0]["values"]) for row in report["data"]["rows"]),
-            )
-            indices = itertools.chain(
-                indices, (tuple(row["dimensions"]) for row in report["data"]["rows"])
+            indices = (tuple(row["dimensions"]) for row in response["data"]["rows"])
+
+            # Retrieve additional data if response is paginated
+            while "nextPageToken" in response.keys():
+                page_token = response["nextPageToken"]
+                response = self._batch_get(
+                    start_date, end_date, _metrics, _dimensions, page_token
+                )
+                if response:
+                    rows = itertools.chain(
+                        rows,
+                        (
+                            tuple(row["metrics"][0]["values"])
+                            for row in response["data"]["rows"]
+                        ),
+                    )
+                    indices = itertools.chain(
+                        indices,
+                        (tuple(row["dimensions"]) for row in response["data"]["rows"]),
+                    )
+
+            # Set up report data (for pandas DataFrame)
+            fieldnames = (metric.alias for metric in metrics)
+            data = zip(fieldnames, zip(*rows))
+            index = pd.MultiIndex.from_tuples(
+                tuple(indices), names=tuple(dimension.alias for dimension in dimensions)
             )
 
-        # Set up report data (for pandas DataFrame)
-        fieldnames = (metric.alias for metric in metrics)
-        data = zip(fieldnames, zip(*rows))
-        index = pd.MultiIndex.from_tuples(
-            tuple(indices), names=tuple(dimension.alias for dimension in dimensions)
-        )
-
-        return Report(data, index, name)
+            return Report(data, index, name)
