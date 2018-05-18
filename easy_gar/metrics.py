@@ -828,16 +828,56 @@ class _Metrics:
     )
 
     # Page Tracking
-    page_value = _Metric("ga:pageValue")
-    entrances = _Metric("ga:entrances")
-    entrance_rate = _Metric("ga:entranceRate")
-    page_previews = _Metric("ga:pagePreviews")
-    pageviews = _Metric("ga:pageviews")
-    pageviews_per_session = _Metric("ga:pageviewsPerSession")
-    unique_pageviews = _Metric("ga:uniquePageviews")
-    time_on_page = _Metric("ga:timeOnPage")
-    exits = _Metric("ga:exits")
-    exit_rate = _Metric("ga:exitRate")
+    page_value = _Metric(
+        expression="ga:pageValue",
+        alias="Page Value",
+        formatting_type="CURRENCY"
+    )
+    entrances = _Metric(
+        expression="ga:entrances",
+        alias="Entrances",
+        formatting_type="INTEGER"
+    )
+    entrance_rate = _Metric(
+        expression="ga:entranceRate",
+        alias="Entrances / Pageviews",
+        formatting_type="PERCENT"
+    )
+    pageviews = _Metric(
+        expression="ga:pageviews",
+        alias="Pageviews",
+        formatting_type="INTEGER"
+    )
+    pageviews_per_session = _Metric(
+        expression="ga:pageviewsPerSession",
+        alias="Pages / Session",
+        formatting_type="FLOAT"
+    )
+    unique_pageviews = _Metric(
+        expression="ga:uniquePageviews",
+        alias="Unique Page Views",
+        formatting_type="INTEGER"
+    )
+    time_on_page = _Metric(
+        expression="ga:timeOnPage",
+        alias="Time on Page",
+        formatting_type="TIME"
+    )
+    exits = _Metric(
+        expression="ga:exits",
+        alias="Exits",
+        formatting_type="INTEGER"
+    )
+    avg_time_on_page = _Metric(
+        expression="ga:avgTimeOnPage",
+        alias="Avg. Time on Page",
+        formatting_type="TIME"
+    )
+    exit_rate = _Metric(
+        expression="ga:exitRate",
+        alias="% Exit"
+        formatting_type="PERCENT"
+    )
 
 
 metrics = _Metrics()
