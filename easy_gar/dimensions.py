@@ -371,7 +371,7 @@ class Dimensions:
     
     @property
     def page_title(self):
-        return Dimension(name="ga:pageTitle", alis="Page Title")
+        return Dimension(name="ga:pageTitle", alias="Page Title")
     
     @property
     def landing_page_path(self):
