@@ -12,6 +12,8 @@ EasyGAR takes the pain out of using the Google API Python Client and automatical
 
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
+  - [Getting an API Instance](#getting-an-api-instance)
+  - [Creating a Report](#creating-a-report)
   - [Adding Dimensions](#adding-dimensions)
   - [Metric Arithmetic](#metric-arithmetic)
   - [Metric Aliases](#metric-aliases)
@@ -33,6 +35,8 @@ EasyGAR works with a `client_secrets.json` file. If you don't have one already, 
 
 To instantiate the API with your `client_secrets.json` and a Google Analytics View that you have access to:
 
+### Getting an API Instance
+
 ```python
 from easy_gar import API
 
@@ -40,6 +44,8 @@ ga = API("path/to/client_secrets.json". "<VIEWID>")
 ```
 
 > **Note:** If you have not authorized your application to access your user daya, your default browser will open to the Google authorization page. This process creates as `Flow` object that is pickled and stored for future access.
+
+### Creating a Report
 
 The basic method of the `API` class is `.get_report()`, which is used to query the Google Analytics Reporting API and store the results in a pandas `DataFrame`. The `.get_report()` method returns a `Report` object with the `DataFrame` accessible via `Report.DataFrame`.
 
