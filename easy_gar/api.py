@@ -22,6 +22,8 @@ _discovery_uri = "https://analyticsreporting.googleapis.com/$discovery/rest"
 class API:
     """API class."""
 
+    sampling_level = gar.sampling_level.default
+
     def __init__(self, secrets_json, view_id):
         """Init API class."""
         self._view_id = view_id
@@ -57,7 +59,7 @@ class API:
     ):
         """Return Google Analytics Reporing API response object."""
         request_body = {
-            "samplingLevel": sampling_level or gar.sampling_level.default,
+            "samplingLevel": sampling_level or self.sampling_level,
             "viewId": self._view_id,
             "dateRanges": [{"startDate": start_date, "endDate": end_date}],
             "metrics": metrics,
