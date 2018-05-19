@@ -18,7 +18,7 @@ class Metric:
 
     def __str__(self):
         """String representation of metric name."""
-        return f"{self.alias}"
+        return f"{self.expression}"
 
     def __call__(self):
         """Return dictionary to be used in API requests."""

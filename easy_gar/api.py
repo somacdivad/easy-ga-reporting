@@ -175,15 +175,15 @@ class API:
 class OrderBy:
     """Reporting API orderBy object."""
 
-    def __init__(self, metric=None, order_type=None, sort_order=None):
+    def __init__(self, field_name=None, order_type=None, sort_order=None):
         """Init OrderBy object."""
-        self.metric = metric
+        self.field_name = field_name
         self.order_type = order_type or easy_gar.constants.order_type.default
         self.sort_order = sort_order or easy_gar.constants.sort_order.default
 
     def __call__(self):
         return {
-            "fieldName": self.metric.expression,
+            "fieldName": str(self.field_name),
             "orderType": self.order_type,
             "sortOrder": self.sort_order,
         }
