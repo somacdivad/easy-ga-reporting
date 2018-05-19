@@ -13,8 +13,6 @@ from oauth2client import tools
 import pandas as pd
 
 import easy_gar
-from easy_gar.dimensions import dimensions
-from easy_gar.metrics import metrics
 from easy_gar.report import Report
 
 _scopes = ("https://www.googleapis.com/auth/analytics.readonly",)
