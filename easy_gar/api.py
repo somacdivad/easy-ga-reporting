@@ -12,7 +12,11 @@ from oauth2client import file
 from oauth2client import tools
 import pandas as pd
 
-import easy_gar as gar
+import easy_gar.constants
+import easy_gar.dimensions
+import easy_gar.report
+
+from pprint import pprint
 
 _scopes = ("https://www.googleapis.com/auth/analytics.readonly",)
 _discovery_uri = "https://analyticsreporting.googleapis.com/$discovery/rest"
@@ -21,7 +25,7 @@ _discovery_uri = "https://analyticsreporting.googleapis.com/$discovery/rest"
 class API:
     """API class."""
 
-    sampling_level = gar.sampling_level.default
+    sampling_level = easy_gar.constants.sampling_level.default
 
     def __init__(self, secrets_json, view_id):
         """Init API class."""
@@ -64,10 +68,14 @@ class API:
             "dateRanges": [{"startDate": start_date, "endDate": end_date}],
             "metrics": metrics,
             "dimensions": dimensions,
-            "pageSize": str(page_size) or "10000",
+            "pageSize": page_size and str(page_size) or "10000",
         }
         if page_token:
             request_body["pageToken"] = str(page_token)
+        if order_by:
+            request_body["orderBys"] = [obj() for obj in order_by]
+
+        pprint(request_body)
 
         # attempt request using exponential backoff
         error = None
@@ -96,22 +104,31 @@ class API:
 
     def get_report(
         self,
+        sampling_level=None,
         start_date="7daysAgo",
         end_date="today",
         metrics=None,
         dimensions=None,
+        order_by=None,
         name=None,
     ):
         """Return an API response object reporting metrics for set dates."""
         if not dimensions:
-            dimensions = [gar.dimensions.date]
+            dimensions = [easy_gar.dimensions.date]
 
         # Create GA metric/dimensions objects
         _metrics = [metric() for metric in metrics]
         _dimensions = [dimension() for dimension in dimensions]
 
         # Get initial data
-        response = self._batch_get(start_date, end_date, _metrics, _dimensions)
+        response = self._batch_get(
+            sampling_level=sampling_level,
+            start_date=start_date,
+            end_date=end_date,
+            metrics=_metrics,
+            dimensions=_dimensions,
+            order_by=order_by,
+        )
 
         if response:
             rows = (
@@ -152,7 +169,7 @@ class API:
                 names=tuple(dimension.alias for dimension in dimensions),
             )
 
-            return gar.report.Report(data, index, name)
+            return easy_gar.report.Report(data, index, name)
 
 
 class OrderBy:
@@ -161,8 +178,8 @@ class OrderBy:
     def __init__(self, metric=None, order_type=None, sort_order=None):
         """Init OrderBy object."""
         self.metric = metric
-        self.order_type = order_type or gar.constants.order_type.default
-        self.sort_order = sort_order or gar.constants.sort_order.default
+        self.order_type = order_type or easy_gar.constants.order_type.default
+        self.sort_order = sort_order or easy_gar.constants.sort_order.default
 
     def __call__(self):
         return {
