@@ -33,9 +33,9 @@ python setup.py install
 
 EasyGAR works with a `client_secrets.json` file. If you don't have one already, you can get one from the Google APIs [Credentials page](https://console.developers.google.com/apis/credentials). For more information, see the [client secrets guide](https://developers.google.com/api-client-library/python/guide/aaa_client_secrets).
 
-To instantiate the API with your `client_secrets.json` and a Google Analytics View that you have access to:
-
 ### Getting an API Instance
+
+To instantiate the API with your `client_secrets.json` and a Google Analytics View that you have access to:
 
 ```python
 from easy_gar import API
