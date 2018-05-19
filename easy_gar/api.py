@@ -12,7 +12,7 @@ from oauth2client import file
 from oauth2client import tools
 import pandas as pd
 
-import easy_gar
+import easy_gar as gar
 from easy_gar.report import Report
 
 _scopes = ("https://www.googleapis.com/auth/analytics.readonly",)
@@ -47,6 +47,7 @@ class API:
 
     def _batch_get(
         self,
+        sampling_level=None,
         start_date=None,
         end_date=None,
         metrics=None,
@@ -56,11 +57,12 @@ class API:
     ):
         """Return Google Analytics Reporing API response object."""
         request_body = {
+            "samplingLevel": sampling_level or gar.sampling_level.default,
             "viewId": self._view_id,
             "dateRanges": [{"startDate": start_date, "endDate": end_date}],
             "metrics": metrics,
             "dimensions": dimensions,
-            "pageSize": str(page_size) if page_size else "10000",
+            "pageSize": str(page_size) or "10000",
         }
         if page_token:
             request_body["pageToken"] = str(page_token)
