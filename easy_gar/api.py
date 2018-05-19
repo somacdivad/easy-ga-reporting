@@ -75,8 +75,6 @@ class API:
         if order_by:
             request_body["orderBys"] = [obj() for obj in order_by]
 
-        pprint(request_body)
-
         # attempt request using exponential backoff
         error = None
         for n in range(0, 5):
