@@ -8,11 +8,16 @@ class Dimension:
         """Init Dimension object."""
         self.name = name
         self.alias = alias
-        self.histogram_buckets = [histogram_buckets] if histogram_buckets else []
+        self.histogram_buckets = (
+            [histogram_buckets] if histogram_buckets else []
+        )
 
     def __repr__(self):
         """Repr string for class."""
-        return f"{self.__class__.__name__}('{self.name}', '{self.histogram_buckets}')"
+        return (
+            f"{self.__class__.__name__}('{self.name}', "
+            f"'{self.histogram_buckets}')"
+        )
 
     def __str__(self):
         """String representation of dimension name."""
@@ -43,7 +48,9 @@ class Dimensions:
 
     @property
     def user_defined_value(self):
-        return Dimension(name="ga:userDefinedValue", alias="User Defined Value")
+        return Dimension(
+            name="ga:userDefinedValue", alias="User Defined Value"
+        )
 
     @property
     def user_bucket(self):
@@ -52,7 +59,9 @@ class Dimensions:
     # Sessions
     @property
     def session_duration_bucket(self):
-        return Dimension(name="ga:sessionDurationBucket", alias="Session Duration")
+        return Dimension(
+            name="ga:sessionDurationBucket", alias="Session Duration"
+        )
 
     # Traffic Sources
     @property
@@ -122,7 +131,9 @@ class Dimensions:
 
     @property
     def ad_keyword_match_type(self):
-        return Dimension(name="ga:adKeywordMatchType", alias="Keyword Match Type")
+        return Dimension(
+            name="ga:adKeywordMatchType", alias="Keyword Match Type"
+        )
 
     @property
     def ad_matched_query(self):
@@ -158,23 +169,33 @@ class Dimensions:
 
     @property
     def adwords_customer_id(self):
-        return Dimension(name="ga:adwordsCustomerID", alias="AdWords Customer ID")
+        return Dimension(
+            name="ga:adwordsCustomerID", alias="AdWords Customer ID"
+        )
 
     @property
     def adwords_campaign_id(self):
-        return Dimension(name="ga:adwordsCampaignID", alias="AdWords Campaign ID")
+        return Dimension(
+            name="ga:adwordsCampaignID", alias="AdWords Campaign ID"
+        )
 
     @property
     def adwords_ad_group_id(self):
-        return Dimension(name="ga:adwordsAdGroupID", alias="AdWords Ad Group ID")
+        return Dimension(
+            name="ga:adwordsAdGroupID", alias="AdWords Ad Group ID"
+        )
 
     @property
     def adwords_creative_id(self):
-        return Dimension(name="ga:adwordsCreativeID", alias="AdWords Creative ID")
+        return Dimension(
+            name="ga:adwordsCreativeID", alias="AdWords Creative ID"
+        )
 
     @property
     def adwords_criterial_id(self):
-        return Dimension(name="ga:adwordsCriterialsID", alias="AdWord Criteria ID")
+        return Dimension(
+            name="ga:adwordsCriterialsID", alias="AdWord Criteria ID"
+        )
 
     @property
     def ad_query_word_count(self):
@@ -182,7 +203,9 @@ class Dimensions:
 
     @property
     def is_true_video_view_ad(self):
-        return Dimension(name="ga:isTrueViewVideoAd", alias="TrueView Video Ad")
+        return Dimension(
+            name="ga:isTrueViewVideoAd", alias="TrueView Video Ad"
+        )
 
     # Goal Conversions
     @property
@@ -193,15 +216,21 @@ class Dimensions:
 
     @property
     def goal_previous_step1(self):
-        return Dimension(name="ga:goalPreviousStep1", alias="Goal Previous Step - 1")
+        return Dimension(
+            name="ga:goalPreviousStep1", alias="Goal Previous Step - 1"
+        )
 
     @property
     def goal_previous_step2(self):
-        return Dimension(name="ga:goalPreviousStep2", alias="Goal Previous Step - 2")
+        return Dimension(
+            name="ga:goalPreviousStep2", alias="Goal Previous Step - 2"
+        )
 
     @property
     def goal_previous_step3(self):
-        return Dimension(name="ga:goalPreviousStep3", alias="Goal Previous Step - 3")
+        return Dimension(
+            name="ga:goalPreviousStep3", alias="Goal Previous Step - 3"
+        )
 
     # Platform or Device
     @property
@@ -218,28 +247,39 @@ class Dimensions:
 
     @property
     def os_version(self):
-        return Dimension(name="ga:operatingSystemVersion", alias="Operating System")
+        return Dimension(
+            name="ga:operatingSystemVersion", alias="Operating System"
+        )
 
     @property
     def mobile_branding(self):
-        return Dimension(name="ga:mobileDeviceBranding", alias="Mobile Device Branding")
+        return Dimension(
+            name="ga:mobileDeviceBranding", alias="Mobile Device Branding"
+        )
 
     @property
     def mobile_model(self):
-        return Dimension(name="ga:mobileDeviceModel", alias="Mobile Device Model")
+        return Dimension(
+            name="ga:mobileDeviceModel", alias="Mobile Device Model"
+        )
 
     @property
     def mobile_input_selector(self):
-        return Dimension(name="ga:mobileInputSelector", alias="Mobile Input Selector")
+        return Dimension(
+            name="ga:mobileInputSelector", alias="Mobile Input Selector"
+        )
 
     @property
     def mobile_device_info(self):
-        return Dimension(name="ga:mobileDeviceInfo", alias="Mobile Device Info")
+        return Dimension(
+            name="ga:mobileDeviceInfo", alias="Mobile Device Info"
+        )
 
     @property
     def mobile_marketing_name(self):
         return Dimension(
-            name="ga:mobileDeviceMarketingName", alias="Mobile Device Marketing Name"
+            name="ga:mobileDeviceMarketingName",
+            alias="Mobile Device Marketing Name",
         )
 
     @property
@@ -321,7 +361,9 @@ class Dimensions:
 
     @property
     def subcontinent_code(self):
-        return Dimension(name="ga:subContenentCode", alias="Sub Continent Code")
+        return Dimension(
+            name="ga:subContenentCode", alias="Sub Continent Code"
+        )
 
     # System
     @property
@@ -343,13 +385,15 @@ class Dimensions:
     @property
     def source_property_display_name(self):
         return Dimension(
-            name="ga:sourcePropertyDisplayName", alias="Source Property Display Name"
+            name="ga:sourcePropertyDisplayName",
+            alias="Source Property Display Name",
         )
 
     @property
     def source_property_tracking_id(self):
         return Dimension(
-            name="ga:sourcePropertyTrackingId", alias="Source Property Tracking ID"
+            name="ga:sourcePropertyTrackingId",
+            alias="Source Property Tracking ID",
         )
 
     @property
@@ -399,7 +443,9 @@ class Dimensions:
 
     @property
     def previous_page_path(self):
-        return Dimension(name="ga:previousPagePath", alias="Previous Page Path")
+        return Dimension(
+            name="ga:previousPagePath", alias="Previous Page Path"
+        )
 
     @property
     def page_depth(self):
@@ -484,7 +530,9 @@ class Dimensions:
 
     @property
     def iso_year_iso_week(self):
-        return Dimension(name="ga:isoYearIsoWeek", alias="ISO Week of ISO Year")
+        return Dimension(
+            name="ga:isoYearIsoWeek", alias="ISO Week of ISO Year"
+        )
 
     @property
     def nth_hour(self):
@@ -501,17 +549,22 @@ class Dimensions:
 
     @property
     def interest_other_category(self):
-        return Dimension(name="ga:interestOtherCategory", alias="Other Category")
+        return Dimension(
+            name="ga:interestOtherCategory", alias="Other Category"
+        )
 
     @property
     def interest_affinity_category(self):
         return Dimension(
-            name="ga:interestAffinityCategory", alias="Affinity Category (reach)"
+            name="ga:interestAffinityCategory",
+            alias="Affinity Category (reach)",
         )
 
     @property
     def interest_in_market_category(self):
-        return Dimension(name="ga:interestInMarketCategory", alias="In-Market Segment")
+        return Dimension(
+            name="ga:interestInMarketCategory", alias="In-Market Segment"
+        )
 
 
 dimensions = Dimensions()

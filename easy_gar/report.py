@@ -2,7 +2,8 @@
 
 import pandas as pd
 
-class Report():
+
+class Report:
     """Report class."""
 
     def __init__(self, data, index, name=None):

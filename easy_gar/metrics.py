@@ -11,7 +11,10 @@ class Metric:
 
     def __repr__(self, alias=None, formatting_type=None):
         """Repr string for class."""
-        return f"{self.__class__.__name__}('{self.expression}', '{self.alias}', '{self.formatting_type}')"
+        return (
+            f"{self.__class__.__name__}('{self.expression}', "
+            f"'{self.alias}', '{self.formatting_type}')"
+        )
 
     def __str__(self):
         """String representation of metric name."""
@@ -60,12 +63,16 @@ class Metrics:
     # Users
     @property
     def users(self):
-        return Metric(expression="ga:users", alias="Users", formatting_type="INTEGER")
+        return Metric(
+            expression="ga:users", alias="Users", formatting_type="INTEGER"
+        )
 
     @property
     def new_users(self):
         return Metric(
-            expression="ga:newUsers", alias="New Users", formatting_type="INTEGER"
+            expression="ga:newUsers",
+            alias="New Users",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -128,7 +135,9 @@ class Metrics:
     @property
     def sessions(self):
         return Metric(
-            expression="ga:sessions", alias="Sessions", formatting_type="INTEGER"
+            expression="ga:sessions",
+            alias="Sessions",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -140,7 +149,9 @@ class Metrics:
     @property
     def bounce_rate(self):
         return Metric(
-            expression="ga:bounceRate", alias="Bounce Rate", formatting_type="PERCENT"
+            expression="ga:bounceRate",
+            alias="Bounce Rate",
+            formatting_type="PERCENT",
         )
 
     @property
@@ -169,7 +180,9 @@ class Metrics:
 
     @property
     def hits(self):
-        return Metric(expression="ga:hits", alias="Hits", formatting_type="INTEGER")
+        return Metric(
+            expression="ga:hits", alias="Hits", formatting_type="INTEGER"
+        )
 
     # Traffic Sources
     @property
@@ -184,7 +197,9 @@ class Metrics:
     @property
     def impressions(self):
         return Metric(
-            expression="ga:impressions", alias="Impressions", formatting_type="INTEGER"
+            expression="ga:impressions",
+            alias="Impressions",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -195,19 +210,27 @@ class Metrics:
 
     @property
     def ad_cost(self):
-        return Metric(expression="ga:adCost", alias="Cost", formatting_type="CURRENCY")
+        return Metric(
+            expression="ga:adCost", alias="Cost", formatting_type="CURRENCY"
+        )
 
     @property
     def cpm(self):
-        return Metric(expression="ga:CPM", alias="CPM", formatting_type="CURRENCY")
+        return Metric(
+            expression="ga:CPM", alias="CPM", formatting_type="CURRENCY"
+        )
 
     @property
     def cpc(self):
-        return Metric(expression="ga:CPC", alias="CPC", formatting_type="CURRENCY")
+        return Metric(
+            expression="ga:CPC", alias="CPC", formatting_type="CURRENCY"
+        )
 
     @property
     def ctr(self):
-        return Metric(expression="ga:CTR", alias="CTR", formatting_type="PERCENT")
+        return Metric(
+            expression="ga:CTR", alias="CTR", formatting_type="PERCENT"
+        )
 
     @property
     def cost_per_transaction(self):
@@ -227,11 +250,15 @@ class Metrics:
 
     @property
     def rpc(self):
-        return Metric(expression="ga:RPC", alias="RPC", formatting_type="CURRENCY")
+        return Metric(
+            expression="ga:RPC", alias="RPC", formatting_type="CURRENCY"
+        )
 
     @property
     def roas(self):
-        return Metric(expression="ga:ROAS", alias="ROAS", formatting_type="CURRENCY")
+        return Metric(
+            expression="ga:ROAS", alias="ROAS", formatting_type="CURRENCY"
+        )
 
     # Goal Conversions (ALL)
     @property
@@ -253,7 +280,9 @@ class Metrics:
     @property
     def goal_value_all(self):
         return Metric(
-            expression="ga:goalValueAll", alias="Goal Value", formatting_type="CURRENCY"
+            expression="ga:goalValueAll",
+            alias="Goal Value",
+            formatting_type="CURRENCY",
         )
 
     @property
@@ -1273,13 +1302,17 @@ class Metrics:
     @property
     def page_value(self):
         return Metric(
-            expression="ga:pageValue", alias="Page Value", formatting_type="CURRENCY"
+            expression="ga:pageValue",
+            alias="Page Value",
+            formatting_type="CURRENCY",
         )
 
     @property
     def entrances(self):
         return Metric(
-            expression="ga:entrances", alias="Entrances", formatting_type="INTEGER"
+            expression="ga:entrances",
+            alias="Entrances",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -1293,7 +1326,9 @@ class Metrics:
     @property
     def pageviews(self):
         return Metric(
-            expression="ga:pageviews", alias="Pageviews", formatting_type="INTEGER"
+            expression="ga:pageviews",
+            alias="Pageviews",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -1315,12 +1350,16 @@ class Metrics:
     @property
     def time_on_page(self):
         return Metric(
-            expression="ga:timeOnPage", alias="Time on Page", formatting_type="TIME"
+            expression="ga:timeOnPage",
+            alias="Time on Page",
+            formatting_type="TIME",
         )
 
     @property
     def exits(self):
-        return Metric(expression="ga:exits", alias="Exits", formatting_type="INTEGER")
+        return Metric(
+            expression="ga:exits", alias="Exits", formatting_type="INTEGER"
+        )
 
     @property
     def avg_time_on_page(self):

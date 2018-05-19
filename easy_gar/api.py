@@ -16,7 +16,7 @@ import easy_gar
 from easy_gar.report import Report
 
 _scopes = ("https://www.googleapis.com/auth/analytics.readonly",)
-_discovery_uri = ("https://analyticsreporting.googleapis.com/$discovery/rest")
+_discovery_uri = "https://analyticsreporting.googleapis.com/$discovery/rest"
 
 
 class API:
@@ -28,7 +28,9 @@ class API:
 
         # Set up a Flow object to be used if we need to authenticate.
         flow = client.flow_from_clientsecrets(
-            secrets_json, scope=_scopes, message=tools.message_if_missing(secrets_json)
+            secrets_json,
+            scope=_scopes,
+            message=tools.message_if_missing(secrets_json),
         )
 
         # Prepare credentials, and authorize HTTP object with them.
@@ -67,9 +69,11 @@ class API:
         error = None
         for n in range(0, 5):
             try:
-                response = self._analytics.reports().batchGet(
-                    body={"reportRequests": [request_body]}
-                ).execute()
+                response = (
+                    self._analytics.reports()
+                    .batchGet(body={"reportRequests": [request_body]})
+                    .execute()
+                )
                 return response["reports"][0]
 
             except HttpError as err:
@@ -83,7 +87,7 @@ class API:
                     time.sleep((2 ** n)) + random.random()
                 else:
                     break
-        
+
         raise error
 
     def get_report(
@@ -107,9 +111,12 @@ class API:
 
         if response:
             rows = (
-                tuple(row["metrics"][0]["values"]) for row in response["data"]["rows"]
+                tuple(row["metrics"][0]["values"])
+                for row in response["data"]["rows"]
             )
-            indices = (tuple(row["dimensions"]) for row in response["data"]["rows"])
+            indices = (
+                tuple(row["dimensions"]) for row in response["data"]["rows"]
+            )
 
             # Retrieve additional data if response is paginated
             while "nextPageToken" in response.keys():
@@ -127,14 +134,18 @@ class API:
                     )
                     indices = itertools.chain(
                         indices,
-                        (tuple(row["dimensions"]) for row in response["data"]["rows"]),
+                        (
+                            tuple(row["dimensions"])
+                            for row in response["data"]["rows"]
+                        ),
                     )
 
             # Set up report data (for pandas DataFrame)
             fieldnames = (metric.alias for metric in metrics)
             data = zip(fieldnames, zip(*rows))
             index = pd.MultiIndex.from_tuples(
-                tuple(indices), names=tuple(dimension.alias for dimension in dimensions)
+                tuple(indices),
+                names=tuple(dimension.alias for dimension in dimensions),
             )
 
             return Report(data, index, name)
