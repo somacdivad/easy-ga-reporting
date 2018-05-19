@@ -104,7 +104,7 @@ class API:
     ):
         """Return an API response object reporting metrics for set dates."""
         if not dimensions:
-            dimensions = [easy_gar.dimensions.date]
+            dimensions = [gar.dimensions.date]
 
         # Create GA metric/dimensions objects
         _metrics = [metric() for metric in metrics]
