@@ -6,7 +6,7 @@ Do you often use Google Analytics Reporting API in Python? Do you analyze Google
 
 EasyGAR takes the pain out of using the Google API Python Client and automatically converts API responses to pandas `DataFrame` objects. It comes with support for several metrics and dimensions (including simple metric arithemtic!), and even handles pagination for you!
 
-> **NOTE:** EasyGAR is still under construction. It doesn't even have an alpha release yet! If you find a bug, please open an issue. If you would like to contribute, please see our [guidelines for contributing](https://github.com/somacdivad/easy-ga-reporting/blob/master/CONTRIBUTING.md).
+> **Note:** EasyGAR is still under construction. It doesn't even have an alpha release yet! If you find a bug, please open an issue. If you would like to contribute, please see our [guidelines for contributing](https://github.com/somacdivad/easy-ga-reporting/blob/master/CONTRIBUTING.md).
 
 ## Table of Contents
 
@@ -43,7 +43,7 @@ from easy_gar import API
 ga = API("path/to/client_secrets.json". "<VIEWID>")
 ```
 
-> **Note:** If you have not authorized your application to access your user daya, your default browser will open to the Google authorization page. This process creates as `Flow` object that is pickled and stored for future access.
+> **Note:** If you have not authorized your application to access your user data, your default browser will open to the Google authorization page. This process creates as `Flow` object that is pickled and stored for future access.
 
 ### Creating a Report
 
