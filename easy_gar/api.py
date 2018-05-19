@@ -13,7 +13,6 @@ from oauth2client import tools
 import pandas as pd
 
 import easy_gar as gar
-from easy_gar.report import Report
 
 _scopes = ("https://www.googleapis.com/auth/analytics.readonly",)
 _discovery_uri = "https://analyticsreporting.googleapis.com/$discovery/rest"
@@ -54,6 +53,7 @@ class API:
         end_date=None,
         metrics=None,
         dimensions=None,
+        order_by=None,
         page_token=None,
         page_size=None,
     ):
@@ -152,4 +152,21 @@ class API:
                 names=tuple(dimension.alias for dimension in dimensions),
             )
 
-            return Report(data, index, name)
+            return gar.report.Report(data, index, name)
+
+
+class OrderBy:
+    """Reporting API orderBy object."""
+
+    def __init__(self, metric=None, order_type=None, sort_order=None):
+        """Init OrderBy object."""
+        self.metric = metric
+        self.order_type = order_type or gar.constants.order_type.default
+        self.sort_order = sort_order or gar.constants.sort_order.default
+
+    def __call__(self):
+        return {
+            "fieldName": self.metric.expression,
+            "orderType": self.order_type,
+            "sortOrder": self.sort_order,
+        }
