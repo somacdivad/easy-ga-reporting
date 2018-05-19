@@ -226,7 +226,7 @@ Europe       11.0
 Africa        2.0
 ```
 
-Valid values for `sort_order` are `ASCENDING` (default) and `DESCENDING`. These values can also be retrieved with `easy_gar.sort_order.ascending` and `easy_gar.sort_order.descending`, if you like.
+Valid values for `sort_order` are `"ASCENDING"` (default) and `"DESCENDING"`. These values can also be retrieved with `easy_gar.sort_order.ascending` and `easy_gar.sort_order.descending`, if you like.
 
 The `field_name` keyword argument can be any dimension or metric, and you can order by multiple fields:
 

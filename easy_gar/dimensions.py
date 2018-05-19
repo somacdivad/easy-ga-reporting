@@ -2,7 +2,7 @@
 
 
 class Dimension:
-    """Class for dealing with Google Analaytics dimensions."""
+    """Analytics Dimension class."""
 
     def __init__(self, name, alias="", histogram_buckets=None):
         """Init Dimension object."""
@@ -29,7 +29,7 @@ class Dimension:
 
 
 class Dimensions:
-    """Google Analytics dimensions for use with the API class."""
+    """Analytics dimensions for use with the API objects."""
 
     # Users
     @property

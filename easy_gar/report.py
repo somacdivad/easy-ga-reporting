@@ -8,7 +8,6 @@ class Report:
 
     def __init__(self, data, index, name=None):
         """Init Report object."""
-
         self.name = name
         self.DataFrame = pd.DataFrame(dict(data), dtype=float, index=index)
 

@@ -2,7 +2,7 @@
 
 
 class Metric:
-    """Class for dealing with Google Analytics metrics."""
+    """Analytics Metric class."""
 
     def __init__(self, expression=None, alias=None, formatting_type=None):
         self.expression = expression
@@ -58,7 +58,7 @@ class Metric:
 
 
 class Metrics:
-    """Google Analytics Metrics for use with the API class."""
+    """Analytics Metrics for use with the API objects."""
 
     # Users
     @property
