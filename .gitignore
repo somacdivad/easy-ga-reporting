@@ -105,6 +105,6 @@ dev/
 .vscode/
 
 # test stuff
-analyticsreporting.dat
+*.dat
 client_secrets.json
 test.py
