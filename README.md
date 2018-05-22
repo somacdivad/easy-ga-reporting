@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/somacdivad/easy-ga-reporting.svg?branch=master)](https://travis-ci.org/somacdivad/easy-ga-reporting)
+[![BCH compliance](https://bettercodehub.com/edge/badge/somacdivad/easy-ga-reporting?branch=master)](https://bettercodehub.com/)
+
 # EasyGAR
 
 > Request a Google Analytics report. Get a Pandas `DataFrame`.
