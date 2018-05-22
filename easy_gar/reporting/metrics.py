@@ -1,31 +1,13 @@
-"""Google Analytics metric objects."""
+"""Google Analytics Reporting API v4 Metrics."""
 
-
-class Metric:
-    """Analytics Metric class."""
-
-    def __init__(self, expression=None, alias=None, formatting_type=None):
-        self.expression = expression
-        self.alias = alias
-        self.formatting_type = formatting_type
-
-    def __repr__(self, alias=None, formatting_type=None):
-        """Repr string for class."""
-        return (
-            f"{self.__class__.__name__}('{self.expression}', "
-            f"'{self.alias}', '{self.formatting_type}')"
-        )
-
-    def __str__(self):
-        """String representation of metric name."""
-        return f"{self.expression}"
-
-    def __call__(self):
-        raise NotImplementedError
+from easy_gar.api import Metric
 
 
 class ReportingMetric(Metric):
     """Analytics Metric class."""
+
+    def __init__(self, expression, alias=None, formatting_type=None):
+        super().__init__(expression, alias, formatting_type)
 
     def __call__(self):
         """Return dictionary to be used in API requests."""
@@ -38,19 +20,25 @@ class ReportingMetric(Metric):
 
     def __add__(self, other):
         """Metric addition."""
-        m = ReportingMetric(expression=f"({self.expression})+{other.expression}")
+        m = ReportingMetric(
+            expression=f"({self.expression})+{other.expression}"
+        )
         m.alias = f"{self} + {other}"
         return m
 
     def __sub__(self, other):
         """Metric subtraction."""
-        m = ReportingMetric(expression=f"({self.expression})-{other.expression}")
+        m = ReportingMetric(
+            expression=f"({self.expression})-{other.expression}"
+        )
         m.alias = f"{self} - {other}"
         return m
 
     def __mul__(self, other):
         """Metric multiplication."""
-        m = ReportingMetric(expression=f"({self.expression})*{other.expression}")
+        m = ReportingMetric(
+            expression=f"({self.expression})*{other.expression}"
+        )
         m.alias = f"{self} * {other}"
         return m
 
@@ -64,7 +52,7 @@ class ReportingMetric(Metric):
         return m
 
 
-class ReportingMetrics:
+class Metrics:
     """Analytics Metrics for use with the API objects."""
 
     # Users
@@ -77,7 +65,9 @@ class ReportingMetrics:
     @property
     def new_users(self):
         return ReportingMetric(
-            expression="ga:newUsers", alias="New Users", formatting_type="INTEGER"
+            expression="ga:newUsers",
+            alias="New Users",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -140,7 +130,9 @@ class ReportingMetrics:
     @property
     def sessions(self):
         return ReportingMetric(
-            expression="ga:sessions", alias="Sessions", formatting_type="INTEGER"
+            expression="ga:sessions",
+            alias="Sessions",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -152,7 +144,9 @@ class ReportingMetrics:
     @property
     def bounce_rate(self):
         return ReportingMetric(
-            expression="ga:bounceRate", alias="Bounce Rate", formatting_type="PERCENT"
+            expression="ga:bounceRate",
+            alias="Bounce Rate",
+            formatting_type="PERCENT",
         )
 
     @property
@@ -198,7 +192,9 @@ class ReportingMetrics:
     @property
     def impressions(self):
         return ReportingMetric(
-            expression="ga:impressions", alias="Impressions", formatting_type="INTEGER"
+            expression="ga:impressions",
+            alias="Impressions",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -279,7 +275,9 @@ class ReportingMetrics:
     @property
     def goal_value_all(self):
         return ReportingMetric(
-            expression="ga:goalValueAll", alias="Goal Value", formatting_type="CURRENCY"
+            expression="ga:goalValueAll",
+            alias="Goal Value",
+            formatting_type="CURRENCY",
         )
 
     @property
@@ -318,7 +316,7 @@ class ReportingMetrics:
     # Goal 01
     @property
     def goal01_starts(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal1Starts",
             alias="Goal 01 Starts",
             formatting_type="INTEGER",
@@ -326,7 +324,7 @@ class ReportingMetrics:
 
     @property
     def goal01_completions(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal1Completions",
             alias="Goal 01 Completions",
             formatting_type="INTEGER",
@@ -334,7 +332,7 @@ class ReportingMetrics:
 
     @property
     def goal01_value(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal1Value",
             alias="Goal 01 Value",
             formatting_type="CURRENCY",
@@ -342,7 +340,7 @@ class ReportingMetrics:
 
     @property
     def goal01_conversion_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal1ConversionRate",
             alias="Goal 01 Conversion Rate",
             formatting_type="PERCENT",
@@ -350,7 +348,7 @@ class ReportingMetrics:
 
     @property
     def goal01_abandons(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal1Abandons",
             alias="Goal 01 Abandoned Funnels",
             formatting_type="INTEGER",
@@ -358,7 +356,7 @@ class ReportingMetrics:
 
     @property
     def goal01_abandon_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal1AbandonRate",
             alias="Goal 01 Abandonment Rate",
             formatting_type="PERCENT",
@@ -367,7 +365,7 @@ class ReportingMetrics:
     # Goal 02
     @property
     def goal02_starts(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal2Starts",
             alias="Goal 02 Starts",
             formatting_type="INTEGER",
@@ -375,7 +373,7 @@ class ReportingMetrics:
 
     @property
     def goal02_completions(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal2Completions",
             alias="Goal 02 Completions",
             formatting_type="INTEGER",
@@ -383,7 +381,7 @@ class ReportingMetrics:
 
     @property
     def goal02_value(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal2Value",
             alias="Goal 02 Value",
             formatting_type="CURRENCY",
@@ -391,7 +389,7 @@ class ReportingMetrics:
 
     @property
     def goal02_conversion_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal2ConversionRate",
             alias="Goal 02 Conversion Rate",
             formatting_type="PERCENT",
@@ -399,7 +397,7 @@ class ReportingMetrics:
 
     @property
     def goal02_abandons(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal2Abandons",
             alias="Goal 02 Abandoned Funnels",
             formatting_type="INTEGER",
@@ -407,7 +405,7 @@ class ReportingMetrics:
 
     @property
     def goal02_abandon_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal2AbandonRate",
             alias="Goal 02 Abandonment Rate",
             formatting_type="PERCENT",
@@ -416,7 +414,7 @@ class ReportingMetrics:
     # Goal 03
     @property
     def goal03_starts(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal3Starts",
             alias="Goal 03 Starts",
             formatting_type="INTEGER",
@@ -424,7 +422,7 @@ class ReportingMetrics:
 
     @property
     def goal03_completions(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal3Completions",
             alias="Goal 03 Completions",
             formatting_type="INTEGER",
@@ -432,7 +430,7 @@ class ReportingMetrics:
 
     @property
     def goal03_value(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal3Value",
             alias="Goal 03 Value",
             formatting_type="CURRENCY",
@@ -440,7 +438,7 @@ class ReportingMetrics:
 
     @property
     def goal03_conversion_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal3ConversionRate",
             alias="Goal 03 Conversion Rate",
             formatting_type="PERCENT",
@@ -448,7 +446,7 @@ class ReportingMetrics:
 
     @property
     def goal03_abandons(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal3Abandons",
             alias="Goal 03 Abandoned Funnels",
             formatting_type="INTEGER",
@@ -456,7 +454,7 @@ class ReportingMetrics:
 
     @property
     def goal03_abandon_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal3AbandonRate",
             alias="Goal 03 Abandonment Rate",
             formatting_type="PERCENT",
@@ -465,7 +463,7 @@ class ReportingMetrics:
     # Goal 04
     @property
     def goal04_starts(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal4Starts",
             alias="Goal 04 Starts",
             formatting_type="INTEGER",
@@ -473,7 +471,7 @@ class ReportingMetrics:
 
     @property
     def goal04_completions(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal4Completions",
             alias="Goal 04 Completions",
             formatting_type="INTEGER",
@@ -481,7 +479,7 @@ class ReportingMetrics:
 
     @property
     def goal04_value(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal4Value",
             alias="Goal 04 Value",
             formatting_type="CURRENCY",
@@ -489,7 +487,7 @@ class ReportingMetrics:
 
     @property
     def goal04_conversion_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal4ConversionRate",
             alias="Goal 04 Conversion Rate",
             formatting_type="PERCENT",
@@ -497,7 +495,7 @@ class ReportingMetrics:
 
     @property
     def goal04_abandons(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal4Abandons",
             alias="Goal 04 Abandoned Funnels",
             formatting_type="INTEGER",
@@ -505,7 +503,7 @@ class ReportingMetrics:
 
     @property
     def goal04_abandon_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal4AbandonRate",
             alias="Goal 04 Abandonment Rate",
             formatting_type="PERCENT",
@@ -514,7 +512,7 @@ class ReportingMetrics:
     # Goal 05
     @property
     def goal05_starts(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal5Starts",
             alias="Goal 05 Starts",
             formatting_type="INTEGER",
@@ -522,7 +520,7 @@ class ReportingMetrics:
 
     @property
     def goal05_completions(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal5Completions",
             alias="Goal 05 Completions",
             formatting_type="INTEGER",
@@ -530,7 +528,7 @@ class ReportingMetrics:
 
     @property
     def goal05_value(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal5Value",
             alias="Goal 05 Value",
             formatting_type="CURRENCY",
@@ -538,7 +536,7 @@ class ReportingMetrics:
 
     @property
     def goal05_conversion_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal5ConversionRate",
             alias="Goal 05 Conversion Rate",
             formatting_type="PERCENT",
@@ -546,7 +544,7 @@ class ReportingMetrics:
 
     @property
     def goal05_abandons(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal5Abandons",
             alias="Goal 05 Abandoned Funnels",
             formatting_type="INTEGER",
@@ -554,7 +552,7 @@ class ReportingMetrics:
 
     @property
     def goal05_abandon_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal5AbandonRate",
             alias="Goal 05 Abandonment Rate",
             formatting_type="PERCENT",
@@ -563,7 +561,7 @@ class ReportingMetrics:
     # Goal 06
     @property
     def goal06_starts(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal6Starts",
             alias="Goal 06 Starts",
             formatting_type="INTEGER",
@@ -571,7 +569,7 @@ class ReportingMetrics:
 
     @property
     def goal06_completions(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal6Completions",
             alias="Goal 06 Completions",
             formatting_type="INTEGER",
@@ -579,7 +577,7 @@ class ReportingMetrics:
 
     @property
     def goal06_value(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal6Value",
             alias="Goal 06 Value",
             formatting_type="CURRENCY",
@@ -587,7 +585,7 @@ class ReportingMetrics:
 
     @property
     def goal06_conversion_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal6ConversionRate",
             alias="Goal 06 Conversion Rate",
             formatting_type="PERCENT",
@@ -595,7 +593,7 @@ class ReportingMetrics:
 
     @property
     def goal06_abandons(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal6Abandons",
             alias="Goal 06 Abandoned Funnels",
             formatting_type="INTEGER",
@@ -603,7 +601,7 @@ class ReportingMetrics:
 
     @property
     def goal06_abandon_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal6AbandonRate",
             alias="Goal 06 Abandonment Rate",
             formatting_type="PERCENT",
@@ -612,7 +610,7 @@ class ReportingMetrics:
     # Goal 07
     @property
     def goal07_starts(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal7Starts",
             alias="Goal 07 Starts",
             formatting_type="INTEGER",
@@ -620,7 +618,7 @@ class ReportingMetrics:
 
     @property
     def goal07_completions(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal7Completions",
             alias="Goal 07 Completions",
             formatting_type="INTEGER",
@@ -628,7 +626,7 @@ class ReportingMetrics:
 
     @property
     def goal07_value(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal7Value",
             alias="Goal 07 Value",
             formatting_type="CURRENCY",
@@ -636,7 +634,7 @@ class ReportingMetrics:
 
     @property
     def goal07_conversion_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal7ConversionRate",
             alias="Goal 07 Conversion Rate",
             formatting_type="PERCENT",
@@ -644,7 +642,7 @@ class ReportingMetrics:
 
     @property
     def goal07_abandons(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal7Abandons",
             alias="Goal 07 Abandoned Funnels",
             formatting_type="INTEGER",
@@ -652,7 +650,7 @@ class ReportingMetrics:
 
     @property
     def goal07_abandon_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal7AbandonRate",
             alias="Goal 07 Abandonment Rate",
             formatting_type="PERCENT",
@@ -661,7 +659,7 @@ class ReportingMetrics:
     # Goal 08
     @property
     def goal08_starts(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal8Starts",
             alias="Goal 08 Starts",
             formatting_type="INTEGER",
@@ -669,7 +667,7 @@ class ReportingMetrics:
 
     @property
     def goal08_completions(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal8Completions",
             alias="Goal 08 Completions",
             formatting_type="INTEGER",
@@ -677,7 +675,7 @@ class ReportingMetrics:
 
     @property
     def goal08_value(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal8Value",
             alias="Goal 08 Value",
             formatting_type="CURRENCY",
@@ -685,7 +683,7 @@ class ReportingMetrics:
 
     @property
     def goal08_conversion_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal8ConversionRate",
             alias="Goal 08 Conversion Rate",
             formatting_type="PERCENT",
@@ -693,7 +691,7 @@ class ReportingMetrics:
 
     @property
     def goal08_abandons(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal8Abandons",
             alias="Goal 08 Abandoned Funnels",
             formatting_type="INTEGER",
@@ -701,7 +699,7 @@ class ReportingMetrics:
 
     @property
     def goal08_abandon_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal8AbandonRate",
             alias="Goal 08 Abandonment Rate",
             formatting_type="PERCENT",
@@ -710,7 +708,7 @@ class ReportingMetrics:
     # Goal 09
     @property
     def goal09_starts(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal9Starts",
             alias="Goal 09 Starts",
             formatting_type="INTEGER",
@@ -718,7 +716,7 @@ class ReportingMetrics:
 
     @property
     def goal09_completions(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal9Completions",
             alias="Goal 09 Completions",
             formatting_type="INTEGER",
@@ -726,7 +724,7 @@ class ReportingMetrics:
 
     @property
     def goal09_value(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal9Value",
             alias="Goal 09 Value",
             formatting_type="CURRENCY",
@@ -734,7 +732,7 @@ class ReportingMetrics:
 
     @property
     def goal09_conversion_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal9ConversionRate",
             alias="Goal 09 Conversion Rate",
             formatting_type="PERCENT",
@@ -742,7 +740,7 @@ class ReportingMetrics:
 
     @property
     def goal09_abandons(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal9Abandons",
             alias="Goal 09 Abandoned Funnels",
             formatting_type="INTEGER",
@@ -750,7 +748,7 @@ class ReportingMetrics:
 
     @property
     def goal09_abandon_rate(self):
-        return Metric(
+        return ReportingMetric(
             expression="ga:goal9AbandonRate",
             alias="Goal 09 Abandonment Rate",
             formatting_type="PERCENT",
@@ -1299,13 +1297,17 @@ class ReportingMetrics:
     @property
     def page_value(self):
         return ReportingMetric(
-            expression="ga:pageValue", alias="Page Value", formatting_type="CURRENCY"
+            expression="ga:pageValue",
+            alias="Page Value",
+            formatting_type="CURRENCY",
         )
 
     @property
     def entrances(self):
         return ReportingMetric(
-            expression="ga:entrances", alias="Entrances", formatting_type="INTEGER"
+            expression="ga:entrances",
+            alias="Entrances",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -1319,7 +1321,9 @@ class ReportingMetrics:
     @property
     def pageviews(self):
         return ReportingMetric(
-            expression="ga:pageviews", alias="Pageviews", formatting_type="INTEGER"
+            expression="ga:pageviews",
+            alias="Pageviews",
+            formatting_type="INTEGER",
         )
 
     @property
@@ -1341,7 +1345,9 @@ class ReportingMetrics:
     @property
     def time_on_page(self):
         return ReportingMetric(
-            expression="ga:timeOnPage", alias="Time on Page", formatting_type="TIME"
+            expression="ga:timeOnPage",
+            alias="Time on Page",
+            formatting_type="TIME",
         )
 
     @property
@@ -1363,71 +1369,3 @@ class ReportingMetrics:
         return ReportingMetric(
             expression="ga:exitRate", alias="% Exit", formatting_type="PERCENT"
         )
-
-
-class MCFMetric(Metric):
-    """Multi-Channel Funnel Metric."""
-
-    def __call__(self):
-        """Return dictionary to be used in API requests."""
-        return self.expression
-
-
-class MCFMetrics:
-    """Multi-Channel Funnel metrics for use with API object."""
-
-    @property
-    def first_impressions_conversions(self):
-        return MCFMetric(
-            expression="mcf:firstImpressionConversions",
-            alias="First Impression Conversions",
-            formatting_type="INTEGER",
-        )
-
-    @property
-    def first_impression_value(self):
-        return MCFMetric(
-            expression="mcf:firstImpressionValue",
-            alias="First Impression Value",
-            formatting_type="CURRENCY",
-        )
-
-    @property
-    def assisted_conversions(self):
-        return MCFMetric(
-            expression="mcf:impressionAssistedConversions",
-            alias="Assisted Conversions",
-            formatting_type="INTEGER",
-        )
-
-    @property
-    def assisted_conversions_value(self):
-        return MCFMetric(
-            expression="mcf:impressionAssistedValue",
-            alias="Assisted Conversions Value",
-            formatting_type="CURRENCY",
-        )
-
-    @property
-    def total_conversions(self):
-        return MCFMetric(
-            expression="mcf:totalConversions",
-            alias="Total Conversions",
-            formatting_type="INTEGER",
-        )
-
-    @property
-    def total_conversion_value(self):
-        return MCFMetric(
-            expression="mcf:totalConversionValue",
-            alias="Total Conversion Value",
-            formatting_type="CURRENCY",
-        )
-
-
-class Metrics:
-    ga = ReportingMetrics()
-    mcf = MCFMetrics()
-
-
-metrics = Metrics()
