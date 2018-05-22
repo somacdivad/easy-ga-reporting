@@ -1,6 +1,6 @@
 """Google Analytics Muti-channel Funnel API v3 Metrics."""
 
-from easy_gar.api import Metric
+from easy_gar.base import Metric
 
 
 class MCFMetric(Metric):

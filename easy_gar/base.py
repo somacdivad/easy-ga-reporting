@@ -1,5 +1,7 @@
 """Base classes."""
 
+import pandas as pd
+
 
 class Metric:
     """Base Metric class."""
@@ -45,3 +47,15 @@ class Dimension:
     def __call__(self):
         """Return dictionary to be used in API requests."""
         return {"name": self.name}
+
+
+class Report:
+    """Report class."""
+
+    def __init__(self, data, index, name=None):
+        """Init Report object."""
+        self.name = name
+        self.DataFrame = pd.DataFrame(dict(data), dtype=float, index=index)
+
+    def __repr__(self):
+        return repr(self.DataFrame)

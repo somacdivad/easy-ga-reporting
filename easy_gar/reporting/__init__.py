@@ -13,6 +13,7 @@ from oauth2client import tools
 import pandas as pd
 
 import easy_gar
+from easy_gar.base import Report
 from easy_gar.reporting.metrics import Metrics
 from easy_gar.reporting.dimensions import Dimensions
 
@@ -25,7 +26,7 @@ dimensions = Dimensions()
 class ReportingAPI:
     """API class."""
 
-    sampling_level = easy_gar.constants.sampling_level.default
+    sampling_level = "DEFAULT"
 
     def __init__(self, secrets_json, view_id):
         """Init ReportingAPI object."""
@@ -175,7 +176,7 @@ class ReportingAPI:
                 names=tuple(dimension.alias for dimension in dimensions),
             )
 
-            return easy_gar.report.Report(data, index, name)
+            return Report(data, index, name)
 
 
 class OrderBy:
@@ -184,8 +185,8 @@ class OrderBy:
     def __init__(self, field_name=None, order_type=None, sort_order=None):
         """Init OrderBy object."""
         self.field_name = field_name
-        self.order_type = order_type or easy_gar.constants.order_type.default
-        self.sort_order = sort_order or easy_gar.constants.sort_order.default
+        self.order_type = order_type or "VALUE"
+        self.sort_order = sort_order or "ASCENDING"
 
     def __call__(self):
         return {

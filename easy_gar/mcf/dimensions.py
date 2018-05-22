@@ -1,6 +1,6 @@
 """Google Analytics Multi-channel Funnels API v3 Dimensions."""
 
-from easy_gar.api import Dimension
+from easy_gar.base import Dimension
 
 
 class MCFDimension(Dimension):

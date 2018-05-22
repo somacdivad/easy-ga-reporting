@@ -1,6 +1,6 @@
 """Google Analytics Reporting API v4 Metrics."""
 
-from easy_gar.api import Metric
+from easy_gar.base import Metric
 
 
 class ReportingMetric(Metric):

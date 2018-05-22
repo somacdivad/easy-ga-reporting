@@ -1,6 +1,6 @@
 """Google Analytics Reporting API v4 Dimensions."""
 
-from easy_gar.api import Dimension
+from easy_gar.base import Dimension
 
 
 class ReportingDimension(Dimension):
