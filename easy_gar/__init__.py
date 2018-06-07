@@ -10,6 +10,7 @@ import httplib2
 from oauth2client import client
 from oauth2client import file
 from oauth2client import tools
+from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 
 import easy_gar
@@ -31,15 +32,12 @@ class ReportingAPI:
 
     sampling_level = "DEFAULT"
 
-    def __init__(self, secrets_json, view_id):
-        """Init ReportingAPI object."""
-        self._view_id = view_id
-
+    def _build_from_oauth_keys(self, secrets_path):
         # Set up a Flow object to be used if we need to authenticate.
         flow = client.flow_from_clientsecrets(
-            secrets_json,
-            scope=("https://www.googleapis.com/auth/analytics.readonly",),
-            message=tools.message_if_missing(secrets_json),
+            secrets_path,
+            scope=self._scopes,
+            message=tools.message_if_missing(secrets_path),
         )
 
         # Prepare credentials, and authorize HTTP object with them.
@@ -55,8 +53,41 @@ class ReportingAPI:
             "v4",
             http=http,
             discoveryServiceUrl="https://analyticsreporting.googleapis.com/"
-                                "$discovery/rest",
+            "$discovery/rest",
         )
+
+    def _build_from_service_account_keys(self, secrets_path):
+        credentials = ServiceAccountCredentials.from_json_keyfile_name(
+            secrets_path, self._scopes
+        )
+
+        # Build the analytics reporting v4 service object.
+        self._reporting = build("analyticsreporting", "v4", credentials=credentials)
+
+    def __init__(
+        self,
+        view_id,
+        secrets_path,
+        secrets_type="oauth",
+        scopes=("https://www.googleapis.com/auth/analytics.readonly",),
+    ):
+        """Init ReportingAPI object."""
+        self._view_id = view_id
+        self._scopes = scopes
+
+        print(secrets_type)
+
+        build = {
+            "oauth": self._build_from_oauth_keys,
+            "service": self._build_from_service_account_keys,
+        }.get(
+            secrets_type, None
+        )
+
+        if build is None:
+            raise ValueError("Invalid secrets_type; must be on of 'oauth' or 'service'")
+
+        build(secrets_path)
 
     def _request_with_exponential_backoff(self, body):
         """Return Google Analytic Reporting API v4 reponse object."""
@@ -124,7 +155,7 @@ class ReportingAPI:
     ):
         """Return an API response object reporting metrics for set dates."""
         if not dimensions:
-            dimensions = [easy_gar.reporting.dimensions.date]
+            dimensions = [easy_gar.dimensions.date]
 
         # Create GA metric/dimensions objects
         _metrics = [metric() for metric in metrics]
@@ -142,12 +173,9 @@ class ReportingAPI:
 
         if response:
             rows = (
-                tuple(row["metrics"][0]["values"])
-                for row in response["data"]["rows"]
+                tuple(row["metrics"][0]["values"]) for row in response["data"]["rows"]
             )
-            indices = (
-                tuple(row["dimensions"]) for row in response["data"]["rows"]
-            )
+            indices = (tuple(row["dimensions"]) for row in response["data"]["rows"])
 
             # Retrieve additional data if response is paginated
             while "nextPageToken" in response.keys():
@@ -165,18 +193,14 @@ class ReportingAPI:
                     )
                     indices = itertools.chain(
                         indices,
-                        (
-                            tuple(row["dimensions"])
-                            for row in response["data"]["rows"]
-                        ),
+                        (tuple(row["dimensions"]) for row in response["data"]["rows"]),
                     )
 
             # Set up report data (for pandas DataFrame)
             fieldnames = (metric.alias for metric in metrics)
             data = zip(fieldnames, zip(*rows))
             index = pd.MultiIndex.from_tuples(
-                tuple(indices),
-                names=tuple(dimension.alias for dimension in dimensions),
+                tuple(indices), names=tuple(dimension.alias for dimension in dimensions)
             )
 
             return Report(data, index, name)
