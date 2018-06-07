@@ -5,5 +5,5 @@ install:
   - pip install -r requirements.txt
   - pip install -r requirements-dev.txt
 script:
-  - flake8 easy_gar
+  - flake8 easy_gar --max-line-lengh 88
   - pydocstyle easy_gar
