@@ -37,8 +37,7 @@ class Dimension:
 
     def __repr__(self):
         """Repr string for Dimension object."""
-        return f"{self.__class__.__name__}(name='{self.name}', " \
-               f"alias='{self.alias}')"
+        return f"{self.__class__.__name__}(name='{self.name}', alias='{self.alias}')"
 
     def __str__(self):
         """String representation of Dimension object."""
@@ -47,6 +46,23 @@ class Dimension:
     def __call__(self):
         """Return dictionary to be used in API requests."""
         return {"name": self.name}
+
+
+class OrderBy:
+    """Reporting API orderBy object."""
+
+    def __init__(self, field_name, order_type="VALUE", sort_order="ASCENDING"):
+        """Init OrderBy object."""
+        self.field_name = field_name
+        self.order_type = order_type
+        self.sort_order = sort_order
+
+    def __call__(self):
+        return {
+            "fieldName": str(self.field_name),
+            "orderType": self.order_type,
+            "sortOrder": self.sort_order,
+        }
 
 
 class Report:

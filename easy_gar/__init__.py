@@ -14,7 +14,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 
 import easy_gar
-from easy_gar.base import Report
+from easy_gar.base import Report, OrderBy
 from easy_gar.metrics import Metrics
 from easy_gar.dimensions import Dimensions
 
@@ -204,20 +204,3 @@ class ReportingAPI:
             )
 
             return Report(data, index, name)
-
-
-class OrderBy:
-    """Reporting API orderBy object."""
-
-    def __init__(self, field_name=None, order_type=None, sort_order=None):
-        """Init OrderBy object."""
-        self.field_name = field_name
-        self.order_type = order_type or "VALUE"
-        self.sort_order = sort_order or "ASCENDING"
-
-    def __call__(self):
-        return {
-            "fieldName": str(self.field_name),
-            "orderType": self.order_type,
-            "sortOrder": self.sort_order,
-        }
