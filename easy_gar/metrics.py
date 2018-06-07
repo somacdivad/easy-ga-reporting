@@ -20,25 +20,19 @@ class ReportingMetric(Metric):
 
     def __add__(self, other):
         """Metric addition."""
-        m = ReportingMetric(
-            expression=f"({self.expression})+{other.expression}"
-        )
+        m = ReportingMetric(expression=f"({self.expression})+{other.expression}")
         m.alias = f"{self} + {other}"
         return m
 
     def __sub__(self, other):
         """Metric subtraction."""
-        m = ReportingMetric(
-            expression=f"({self.expression})-{other.expression}"
-        )
+        m = ReportingMetric(expression=f"({self.expression})-{other.expression}")
         m.alias = f"{self} - {other}"
         return m
 
     def __mul__(self, other):
         """Metric multiplication."""
-        m = ReportingMetric(
-            expression=f"({self.expression})*{other.expression}"
-        )
+        m = ReportingMetric(expression=f"({self.expression})*{other.expression}")
         m.alias = f"{self} * {other}"
         return m
 
@@ -65,9 +59,7 @@ class Metrics:
     @property
     def new_users(self):
         return ReportingMetric(
-            expression="ga:newUsers",
-            alias="New Users",
-            formatting_type="INTEGER",
+            expression="ga:newUsers", alias="New Users", formatting_type="INTEGER"
         )
 
     @property
@@ -130,9 +122,7 @@ class Metrics:
     @property
     def sessions(self):
         return ReportingMetric(
-            expression="ga:sessions",
-            alias="Sessions",
-            formatting_type="INTEGER",
+            expression="ga:sessions", alias="Sessions", formatting_type="INTEGER"
         )
 
     @property
@@ -144,9 +134,7 @@ class Metrics:
     @property
     def bounce_rate(self):
         return ReportingMetric(
-            expression="ga:bounceRate",
-            alias="Bounce Rate",
-            formatting_type="PERCENT",
+            expression="ga:bounceRate", alias="Bounce Rate", formatting_type="PERCENT"
         )
 
     @property
@@ -192,9 +180,7 @@ class Metrics:
     @property
     def impressions(self):
         return ReportingMetric(
-            expression="ga:impressions",
-            alias="Impressions",
-            formatting_type="INTEGER",
+            expression="ga:impressions", alias="Impressions", formatting_type="INTEGER"
         )
 
     @property
@@ -275,9 +261,7 @@ class Metrics:
     @property
     def goal_value_all(self):
         return ReportingMetric(
-            expression="ga:goalValueAll",
-            alias="Goal Value",
-            formatting_type="CURRENCY",
+            expression="ga:goalValueAll", alias="Goal Value", formatting_type="CURRENCY"
         )
 
     @property
@@ -1297,17 +1281,13 @@ class Metrics:
     @property
     def page_value(self):
         return ReportingMetric(
-            expression="ga:pageValue",
-            alias="Page Value",
-            formatting_type="CURRENCY",
+            expression="ga:pageValue", alias="Page Value", formatting_type="CURRENCY"
         )
 
     @property
     def entrances(self):
         return ReportingMetric(
-            expression="ga:entrances",
-            alias="Entrances",
-            formatting_type="INTEGER",
+            expression="ga:entrances", alias="Entrances", formatting_type="INTEGER"
         )
 
     @property
@@ -1321,9 +1301,7 @@ class Metrics:
     @property
     def pageviews(self):
         return ReportingMetric(
-            expression="ga:pageviews",
-            alias="Pageviews",
-            formatting_type="INTEGER",
+            expression="ga:pageviews", alias="Pageviews", formatting_type="INTEGER"
         )
 
     @property
@@ -1345,9 +1323,7 @@ class Metrics:
     @property
     def time_on_page(self):
         return ReportingMetric(
-            expression="ga:timeOnPage",
-            alias="Time on Page",
-            formatting_type="TIME",
+            expression="ga:timeOnPage", alias="Time on Page", formatting_type="TIME"
         )
 
     @property
@@ -1369,3 +1345,6 @@ class Metrics:
         return ReportingMetric(
             expression="ga:exitRate", alias="% Exit", formatting_type="PERCENT"
         )
+
+
+metrics = Metrics()

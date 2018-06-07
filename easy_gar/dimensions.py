@@ -9,15 +9,12 @@ class ReportingDimension(Dimension):
     def __init__(self, name, alias="", histogram_buckets=None):
         """Init Dimension object."""
         super().__init__(name, alias)
-        self.histogram_buckets = (
-            [histogram_buckets] if histogram_buckets else []
-        )
+        self.histogram_buckets = ([histogram_buckets] if histogram_buckets else [])
 
     def __repr__(self):
         """Repr string for class."""
         return (
-            f"{self.__class__.__name__}('{self.name}', "
-            f"'{self.histogram_buckets}')"
+            f"{self.__class__.__name__}('{self.name}', " f"'{self.histogram_buckets}')"
         )
 
     def __call__(self):
@@ -35,9 +32,7 @@ class Dimensions:
 
     @property
     def session_count(self):
-        return ReportingDimension(
-            name="ga:sessionCount", alias="Count of Sessions"
-        )
+        return ReportingDimension(name="ga:sessionCount", alias="Count of Sessions")
 
     @property
     def days_since_last_session(self):
@@ -65,15 +60,11 @@ class Dimensions:
     # Traffic Sources
     @property
     def referral_path(self):
-        return ReportingDimension(
-            name="ga:referralPath", alias="Referral Path"
-        )
+        return ReportingDimension(name="ga:referralPath", alias="Referral Path")
 
     @property
     def full_referrer(self):
-        return ReportingDimension(
-            name="ga:fullReferrer", alias="Full Referrer"
-        )
+        return ReportingDimension(name="ga:fullReferrer", alias="Full Referrer")
 
     @property
     def campaign(self):
@@ -89,9 +80,7 @@ class Dimensions:
 
     @property
     def source_medium(self):
-        return ReportingDimension(
-            name="ga:sourceMedium", alias="Source / Medium"
-        )
+        return ReportingDimension(name="ga:sourceMedium", alias="Source / Medium")
 
     @property
     def keyword(self):
@@ -103,9 +92,7 @@ class Dimensions:
 
     @property
     def social_network(self):
-        return ReportingDimension(
-            name="ga:socialNetwork", alias="Social Network"
-        )
+        return ReportingDimension(name="ga:socialNetwork", alias="Social Network")
 
     @property
     def has_social_source_referral(self):
@@ -115,9 +102,7 @@ class Dimensions:
 
     @property
     def campaign_code(self):
-        return ReportingDimension(
-            name="ga:campaignCode", alias="Campaign Code"
-        )
+        return ReportingDimension(name="ga:campaignCode", alias="Campaign Code")
 
     # AdWords
     @property
@@ -136,9 +121,7 @@ class Dimensions:
 
     @property
     def ad_match_type(self):
-        return ReportingDimension(
-            name="ga:adMatchType", alias="Query Match Type"
-        )
+        return ReportingDimension(name="ga:adMatchType", alias="Query Match Type")
 
     @property
     def ad_keyword_match_type(self):
@@ -148,21 +131,15 @@ class Dimensions:
 
     @property
     def ad_matched_query(self):
-        return ReportingDimension(
-            name="ga:adMatchedQuery", alias="Search Query"
-        )
+        return ReportingDimension(name="ga:adMatchedQuery", alias="Search Query")
 
     @property
     def ad_placement_domain(self):
-        return ReportingDimension(
-            name="ga:adPlacementDomain", alias="Placement Domain"
-        )
+        return ReportingDimension(name="ga:adPlacementDomain", alias="Placement Domain")
 
     @property
     def ad_placement_url(self):
-        return ReportingDimension(
-            name="ga:adPlacementUrl", alias="Placement URL"
-        )
+        return ReportingDimension(name="ga:adPlacementUrl", alias="Placement URL")
 
     @property
     def ad_format(self):
@@ -170,15 +147,11 @@ class Dimensions:
 
     @property
     def ad_targeting_type(self):
-        return ReportingDimension(
-            name="ga:adTargetingType", alias="Targeting Type"
-        )
+        return ReportingDimension(name="ga:adTargetingType", alias="Targeting Type")
 
     @property
     def ad_targeting_option(self):
-        return ReportingDimension(
-            name="ga:adTargetingOption", alias="Placement Type"
-        )
+        return ReportingDimension(name="ga:adTargetingOption", alias="Placement Type")
 
     @property
     def ad_display_url(self):
@@ -186,9 +159,7 @@ class Dimensions:
 
     @property
     def ad_destination_url(self):
-        return ReportingDimension(
-            name="ga:adDestinationUrl", alias="Destination URL"
-        )
+        return ReportingDimension(name="ga:adDestinationUrl", alias="Destination URL")
 
     @property
     def adwords_customer_id(self):
@@ -222,9 +193,7 @@ class Dimensions:
 
     @property
     def ad_query_word_count(self):
-        return ReportingDimension(
-            name="ga:adQueryWordCount", alias="Query Word Count"
-        )
+        return ReportingDimension(name="ga:adQueryWordCount", alias="Query Word Count")
 
     @property
     def is_true_video_view_ad(self):
@@ -264,15 +233,11 @@ class Dimensions:
 
     @property
     def browser_version(self):
-        return ReportingDimension(
-            name="ga:browserVersion", alias="Browser Version"
-        )
+        return ReportingDimension(name="ga:browserVersion", alias="Browser Version")
 
     @property
     def os(self):
-        return ReportingDimension(
-            name="ga:operatingSystem", alias="Operating System"
-        )
+        return ReportingDimension(name="ga:operatingSystem", alias="Operating System")
 
     @property
     def os_version(self):
@@ -307,15 +272,12 @@ class Dimensions:
     @property
     def mobile_marketing_name(self):
         return ReportingDimension(
-            name="ga:mobileDeviceMarketingName",
-            alias="Mobile Device Marketing Name",
+            name="ga:mobileDeviceMarketingName", alias="Mobile Device Marketing Name"
         )
 
     @property
     def device_category(self):
-        return ReportingDimension(
-            name="ga:deviceCategory", alias="Device Category"
-        )
+        return ReportingDimension(name="ga:deviceCategory", alias="Device Category")
 
     @property
     def browser_size(self):
@@ -332,9 +294,7 @@ class Dimensions:
 
     @property
     def subcontinent(self):
-        return ReportingDimension(
-            name="ga:subContinent", alias="Sub Continent"
-        )
+        return ReportingDimension(name="ga:subContinent", alias="Sub Continent")
 
     @property
     def country(self):
@@ -362,15 +322,11 @@ class Dimensions:
 
     @property
     def network_domain(self):
-        return ReportingDimension(
-            name="ga:networkDomain", alias="Network Domain"
-        )
+        return ReportingDimension(name="ga:networkDomain", alias="Network Domain")
 
     @property
     def network_location(self):
-        return ReportingDimension(
-            name="ga:networkLocation", alias="Service Provider"
-        )
+        return ReportingDimension(name="ga:networkLocation", alias="Service Provider")
 
     @property
     def city_id(self):
@@ -382,9 +338,7 @@ class Dimensions:
 
     @property
     def country_iso_code(self):
-        return ReportingDimension(
-            name="ga:countryIsoCode", alias="Country ISO Code"
-        )
+        return ReportingDimension(name="ga:countryIsoCode", alias="Country ISO Code")
 
     @property
     def metro_id(self):
@@ -396,9 +350,7 @@ class Dimensions:
 
     @property
     def region_iso_code(self):
-        return ReportingDimension(
-            name="ga:regionIsoCode", alias="Region ISO Code"
-        )
+        return ReportingDimension(name="ga:regionIsoCode", alias="Region ISO Code")
 
     @property
     def subcontinent_code(self):
@@ -409,9 +361,7 @@ class Dimensions:
     # System
     @property
     def flash_version(self):
-        return ReportingDimension(
-            name="ga:flashVersion", alias="Flash Version"
-        )
+        return ReportingDimension(name="ga:flashVersion", alias="Flash Version")
 
     @property
     def java_enabled(self):
@@ -423,29 +373,23 @@ class Dimensions:
 
     @property
     def screen_colors(self):
-        return ReportingDimension(
-            name="ga:screenColors", alias="Screen Colors"
-        )
+        return ReportingDimension(name="ga:screenColors", alias="Screen Colors")
 
     @property
     def source_property_display_name(self):
         return ReportingDimension(
-            name="ga:sourcePropertyDisplayName",
-            alias="Source Property Display Name",
+            name="ga:sourcePropertyDisplayName", alias="Source Property Display Name"
         )
 
     @property
     def source_property_tracking_id(self):
         return ReportingDimension(
-            name="ga:sourcePropertyTrackingId",
-            alias="Source Property Tracking ID",
+            name="ga:sourcePropertyTrackingId", alias="Source Property Tracking ID"
         )
 
     @property
     def screen_resolution(self):
-        return ReportingDimension(
-            name="ga:screenResolution", alias="Screen Resolution"
-        )
+        return ReportingDimension(name="ga:screenResolution", alias="Screen Resolution")
 
     # Page Tracking
     @property
@@ -458,27 +402,19 @@ class Dimensions:
 
     @property
     def page_path_level1(self):
-        return ReportingDimension(
-            name="ga:pagePathLevel1", alias="Page path level 1"
-        )
+        return ReportingDimension(name="ga:pagePathLevel1", alias="Page path level 1")
 
     @property
     def page_path_level2(self):
-        return ReportingDimension(
-            name="ga:pagePathLevel2", alias="Page path level 2"
-        )
+        return ReportingDimension(name="ga:pagePathLevel2", alias="Page path level 2")
 
     @property
     def page_path_level3(self):
-        return ReportingDimension(
-            name="ga:pagePathLevel3", alias="Page path level 3"
-        )
+        return ReportingDimension(name="ga:pagePathLevel3", alias="Page path level 3")
 
     @property
     def page_path_level4(self):
-        return ReportingDimension(
-            name="ga:pagePathLevel4", alias="Page path level 4"
-        )
+        return ReportingDimension(name="ga:pagePathLevel4", alias="Page path level 4")
 
     @property
     def page_title(self):
@@ -486,15 +422,11 @@ class Dimensions:
 
     @property
     def landing_page_path(self):
-        return ReportingDimension(
-            name="ga:landingPagePath", alias="Landing Page"
-        )
+        return ReportingDimension(name="ga:landingPagePath", alias="Landing Page")
 
     @property
     def second_page_path(self):
-        return ReportingDimension(
-            name="ga:secondPagePath", alias="Second Page"
-        )
+        return ReportingDimension(name="ga:secondPagePath", alias="Second Page")
 
     @property
     def exit_page_path(self):
@@ -561,9 +493,7 @@ class Dimensions:
 
     @property
     def day_of_week_name(self):
-        return ReportingDimension(
-            name="ga:dayOfWeekName", alias="Day of Week Name"
-        )
+        return ReportingDimension(name="ga:dayOfWeekName", alias="Day of Week Name")
 
     @property
     def date_hour(self):
@@ -571,9 +501,7 @@ class Dimensions:
 
     @property
     def date_hour_minute(self):
-        return ReportingDimension(
-            name="ga:dateHourMinute", alias="Dat Hour and Minute"
-        )
+        return ReportingDimension(name="ga:dateHourMinute", alias="Dat Hour and Minute")
 
     @property
     def year_month(self):
@@ -585,9 +513,7 @@ class Dimensions:
 
     @property
     def iso_week(self):
-        return ReportingDimension(
-            name="ga:isoWeek", alias="ISO Week of the Year"
-        )
+        return ReportingDimension(name="ga:isoWeek", alias="ISO Week of the Year")
 
     @property
     def iso_year(self):
@@ -621,8 +547,7 @@ class Dimensions:
     @property
     def interest_affinity_category(self):
         return ReportingDimension(
-            name="ga:interestAffinityCategory",
-            alias="Affinity Category (reach)",
+            name="ga:interestAffinityCategory", alias="Affinity Category (reach)"
         )
 
     @property
@@ -630,3 +555,6 @@ class Dimensions:
         return ReportingDimension(
             name="ga:interestInMarketCategory", alias="In-Market Segment"
         )
+
+
+dimensions = Dimensions()
