@@ -107,4 +107,5 @@ dev/
 # test stuff
 *.dat
 client_secrets.json
+analytics.json
 test.py
