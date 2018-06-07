@@ -34,19 +34,23 @@ python setup.py install
 
 ## Basic Usage
 
-EasyGAR works with a `client_secrets.json` file. If you don't have one already, you can get one from the Google APIs [Credentials page](https://console.developers.google.com/apis/credentials). For more information, see the [client secrets guide](https://developers.google.com/api-client-library/python/guide/aaa_client_secrets).
+To work with EasyGAR, you need a secrets file. If you don't have one already, you can get one from the Google APIs [Credentials page](https://console.developers.google.com/apis/credentials). You can supply either OAuth keys or service account keys.
 
 ### Getting an API Instance
 
-To instantiate the API with your `client_secrets.json` and a Google Analytics View that you have access to:
+To instantiage the API:
 
 ```python
 from easy_gar import ReportingAPI
 
-ga = ReportingAPI("path/to/client_secrets.json". "<VIEWID>")
+# Use OAuth keys
+ga = ReportingAPI("<VIEWID>", "path/to/secrets.json")
+
+# Use service account keys.
+ga = ReportingAPI("<VIEWID>", "path/to/secrets.json", secrets_type="service")
 ```
 
-> **Note:** If you have not authorized your application to access your user data, your default browser will open to the Google authorization page. This process creates as `Flow` object that is pickled and stored for future access.
+> **Note on OAuth:** If you have not authorized your application to access your user data, your default browser will open to the Google authorization page. This process creates as `Flow` object that is pickled and stored for future access in a file called `analyticsreporting.dat`.
 
 ### Creating a Report
 
@@ -58,7 +62,7 @@ Here's a sample script illustrating basic usage of EasyGAR:
 from easy_gar import API
 from easy_gar.reporting import metrics, dimensions
 
-ga = ReportingAPI("client_secrets.json", "<VIEWID>")
+ga = ReportingAPI("<VIEWID>", "path/to/secrets.json")
 
 rpt = ga.get_report(
     start_date="7daysAgo",
